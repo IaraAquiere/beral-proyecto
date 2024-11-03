@@ -1,8 +1,8 @@
-import Register from "./componentes/Register/Register"
+import Login from "./componentes/Login/Login"
 
 function App() {
 return (
-<Register/>
+<Login/>
 )
 }
 
