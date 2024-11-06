@@ -4,11 +4,10 @@ const Cart = () => {
     <div className="container">
             <div className="row ">
                 <div className="col ">
-                    <h2>Orden de Stock</h2>
+                    <h2>Pedido</h2>
                     <hr />
                 </div>
             </div>
-
             <div className="row ">
                 <div className="col ">
                     <button
@@ -42,7 +41,6 @@ const Cart = () => {
                     </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
             </table>
 

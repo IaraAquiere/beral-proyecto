@@ -1,6 +1,9 @@
+import ModalOrders from "./ModalOrders";
 
 const Orders = () => {
   return (
+    <>
+   
     <div className="container">
       <h2>Mis pedidos</h2>
       <hr />
@@ -35,23 +38,9 @@ const Orders = () => {
           </tbody>
         </table>
       </div>
-      <div className="modal" id="myModal">
-        <div className="modal-dialog modal-dialog-scrollable modal-xl">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Orden de Stock</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalOrders/>
     </div>
-
+</>
   );
 }
 
