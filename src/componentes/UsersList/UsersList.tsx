@@ -1,11 +1,12 @@
-import Busqueda from "../Search/Search.tsx"
+import Search from "../Search/Search.tsx"
 
 const UsersList = () => {
   return (
     <div className="container">
-      <h2 className="pb-5 pt-4">Lista de usuarios a dar de alta</h2>
-      <Busqueda
-      className1="d-flex flex-row justify-content-center m-3"
+      <h2 className="pt-4">Lista de usuarios a dar de alta</h2>
+      <hr />
+      <Search
+      className1="d-flex flex-row justify-content-center pb-5 pt-4"
       className2="form-control form-control-lg border border-dark-subtle w-50  "
       placeholder="Buscar Usuario"
       />

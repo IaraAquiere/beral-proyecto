@@ -1,12 +1,17 @@
 import ModalOrders from "./ModalOrders";
-
+import Search from "../Search/Search.tsx"
 const Orders = () => {
   return (
     <>
    
     <div className="container">
-      <h2>Mis pedidos</h2>
+      <h2 className="pt-4">Mis pedidos</h2>
       <hr />
+      <Search
+      className1="d-flex flex-row justify-content-center pb-5 pt-4"
+      className2="form-control form-control-lg border border-dark-subtle w-50  "
+      placeholder="Buscar Pedido"
+      />
       <div className="tabla-busqueda">
         <table className="table table-hover ">
           <thead>
