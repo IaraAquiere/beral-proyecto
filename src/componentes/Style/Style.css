@@ -1,0 +1,18 @@
+  .img-logo{
+    width: 150px;
+  }
+
+  .div-img{
+    background-color: #eb812a;
+  }
+   
+
+  .todo {
+    display: flex;
+    justify-content: space-around;
+    place-items: center;
+    min-height: 100vh;
+    background-color: rgb(215, 215, 215);
+  }
+  
+ 

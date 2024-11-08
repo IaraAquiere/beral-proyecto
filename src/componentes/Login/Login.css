@@ -1,45 +1,18 @@
-.todo {
-    display: flex;
-    justify-content: space-around;
-    place-items: center;
-    min-height: 100vh;
-  }
-  
-  .img-logo{
-    width: 150px;
-  }
-
-
   .wrapper {
-    width: 480px;
-    background-color: #f27019;
-    border-radius: 25px;
-    padding: 5rem;
-    text-align: center;
-    color: rgb(255, 255, 255);
+    width: 510px;
+    height: 435px;
+    background-color: rgb(255, 255, 255);
+    padding: 6rem;
   }
-   
-  .text-login input {
-    width: 90%;
+
+  .boton-iniciar{
     border: none;
-    outline: none;
-    border-radius: 15px;
-    
-    padding: 10px;
-  }
-  
-  .text-login p {
-    text-align: left;
-    padding-left: 30px;
-    padding-top: 10px;
-  }
-  
-  .boton-iniciar {
-    border: none;
-    width: 200px;
-    height: 45px;
-    background-color: #373737;
+    width: 135px;
+    height: 40px;
+    background-color: #eb812a;
     color: white;
-    border-radius: 20px;
+    border-radius: 8px;
   }
+
+ 
   

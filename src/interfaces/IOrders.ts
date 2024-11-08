@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IUserOrder {
     nroorder: number,
     clientcode: number,
     orderdate: number,

@@ -1,10 +1,9 @@
-import Orders from "./componentes/Orders/Orders"
-import UsersList from "./componentes/UsersList/UsersList"
+import Register from "./componentes/Register/Register"
 
 
 function App() {
 return (
-<Orders/>
+<Register/>
 )
 }
 
