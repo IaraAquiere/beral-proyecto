@@ -1,7 +1,13 @@
+import { useState } from "react";
 import "./Login.css";
-import "../Style/Style.css"
+import "../Style/Style.css";
+import { useLogin } from "../../hook/useLogin";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { signIn } = useLogin();
+
   return (
     <div className="todo">
       <div className="wrapper rounded-top">
@@ -12,30 +18,39 @@ const Login = () => {
             className="img-logo"
           />
         </div>
-        <div className="row g-2 mt-3 ">
-          <div className="md-6">
-            <label className="form-label align-item-center">Usuario</label>
+        <form onSubmit={signIn}>
+          <div className="mb-3">
+            <label className="form-label">Usuario</label>
             <input
-              name='username'
+              name="username"
               type="text"
               className="form-control"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
+          </div>
+
+          <div className="mb-3">
             <label className="form-label">Contraseña</label>
             <input
               type="password"
               className="form-control"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          
-        </div>
-         <div className="d-flex justify-content-center mt-4 " >
-  <button className="boton-iniciar" type="submit">Iniciar</button>
-</div>      </div>
+          <div className="d-flex justify-content-center mt-4">
+            <button className="boton-iniciar" type="submit">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
