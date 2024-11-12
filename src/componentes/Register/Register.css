@@ -1,19 +1,19 @@
 .wrapper-register {
-    width: 650px;
-    height: 630PX;
-    background-color: rgb(255, 255, 255); 
-    border-radius: 10px;
-    padding: 6rem;
-    
-  }
+  width: 700px;
+  height: 660PX;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 6rem;
 
-  .boton-register {
-    border: none;
-    width: 250px;
-    height: 40px;
-    background-color: #eb812a;
-    color: white;
-    border-radius: 15px;
-    align-items: center;
-    margin-top: 5px;
-  }
+}
+
+.boton-register {
+  border: none;
+  width: 250px;
+  height: 40px;
+  background-color: #eb812a;
+  color: white;
+  border-radius: 15px;
+  align-items: center;
+  margin-top: 5px;
+}

@@ -27,11 +27,13 @@ export const useLogin = () => {
             })
             .then((result) => {
                 console.log("Resultado del login:", result);
-                navigate("/");
+                navigate("/orders");
             })
             .catch((error) => {
                 console.error("Error al hacer login:", error);
             });
     };
     return { signIn }
-}
+};
+
+export default useLogin;

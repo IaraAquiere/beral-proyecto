@@ -12,8 +12,8 @@ return (
 <BrowserRouter>
 <NavBar/>
 <Routes>
-    <Route path="/" element={<Orders/>}/> 
-    <Route path="/login" element={<Login/>}/>
+    <Route path="/" element={<Login/>}/>
+    <Route path="/orders" element={<Orders/>}/> 
     <Route path="/register" element={<Register/>}/>
     <Route path="/cart" element={<Cart/>}/>
     <Route path="/userlist" element={<UsersList/>}/>

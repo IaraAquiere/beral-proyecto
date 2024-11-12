@@ -1,25 +1,9 @@
-import { useState, useEffect } from "react";
+
+import { useUsersList } from "../../hook/useUsersList.ts";
 import Search from "../Search/Search.tsx";
 
 const UsersList = () => {
-  const [users, setUsers] = useState<any[]>([]);
-
-
-  
-  useEffect(() => {
-    const requestOptions = {
-      method: "GET",
-    };
-
-    fetch("http://localhost:5000/api/User/GetAll", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setUsers(result);
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
-  }, []);
+ const { users } = useUsersList();
   return (
     <div className="container">
       <h2>Lista de usuarios a dar de alta</h2>

@@ -3,6 +3,19 @@ import { appSetting } from "../settings/appsettings";
 
 export const useOrder = () => {
   const [order, setOrder] = useState<any[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  const orderSearch = (e: any) => {
+    setSearch(e.target.value);
+  };
+
+  const result = search
+    ? order.filter((order) => {
+      return (
+        order.orderDate.includes(search)
+      );
+    })
+    : order;
 
   useEffect(() => {
     const requestOptions = {
@@ -19,7 +32,7 @@ export const useOrder = () => {
   }, []);
 
 
-  return { order }
+  return { order, orderSearch, result, search  }
 };
 
 export default useOrder;

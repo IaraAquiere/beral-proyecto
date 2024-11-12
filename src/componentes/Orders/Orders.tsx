@@ -1,25 +1,9 @@
 import ModalOrders from "./ModalOrders";
 import Search from "../Search/Search.tsx";
-import { useState } from "react";
 import useOrder from "../../hook/useOrder.ts";
 
-
 const Orders = () => {
-  const { order } = useOrder();
-  const [search, setSearch] = useState<string>("");
-
-  const orderSearch = (e: any) => {
-    setSearch(e.target.value);
-  };
-
-  const result = search
-    ? order.filter((order) => {
-      return (
-        order.orderDate.includes(search)
-      );
-    })
-    : order;
-
+  const { orderSearch, result, search } = useOrder();
   return (
     <>
       <div className="container">

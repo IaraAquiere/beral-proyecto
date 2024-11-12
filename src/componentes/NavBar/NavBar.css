@@ -1,19 +1,17 @@
 .navbar {
-    background-color: #e88949;
-    height: 70px;
-  }
-   
-  .nav-link{
-    color: rgb(255, 255, 255);
-  }
-  
-  .nav-link:hover{
-    color: rgb(0, 0, 0);
-  }
+  background-color: #e88949;
+  height: 70px;
+}
 
-  .logo-beral{
-    height: 25px ;
+.nav-link {
+  color: rgb(255, 255, 255);
+}
 
-  }
+.nav-link:hover {
+  color: rgb(0, 0, 0);
+}
 
-  
+.logo-beral {
+  height: 25px;
+
+}
