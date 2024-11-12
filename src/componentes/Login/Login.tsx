@@ -1,13 +1,13 @@
 import { useState } from "react";
+import { useLogin } from "../../hook/useLogin";
 import "./Login.css";
 import "../Style/Style.css";
-import { useLogin } from "../../hook/useLogin";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useLogin();
-
   return (
     <div className="todo">
       <div className="wrapper rounded-top">
@@ -30,7 +30,6 @@ const Login = () => {
               required
             />
           </div>
-
           <div className="mb-3">
             <label className="form-label">Contraseña</label>
             <input
@@ -42,6 +41,12 @@ const Login = () => {
               required
             />
           </div>
+          <div className="col-12">
+              <div>
+                <p>¿No tenes una cuenta todavia?
+                  <Link to={"/register"} className='ms-3'>Registrate</Link></p>
+              </div>
+            </div>
           <div className="d-flex justify-content-center mt-4">
             <button className="boton-iniciar" type="submit">
               Iniciar sesión
