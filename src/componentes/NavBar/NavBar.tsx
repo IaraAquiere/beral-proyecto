@@ -20,7 +20,7 @@ const NavBar = () => {
                     <li className="nav-item">
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/">Ordenes</Link>
+                      <Link className="nav-link" to="/orders">Ordenes</Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/cart">Carrito</Link>
@@ -28,18 +28,13 @@ const NavBar = () => {
                     <li className="nav-item">
                       <Link className="nav-link" to="/userlist">Lista Usuarios</Link>
                     </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/login">Logout</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/register">Registro</Link>
-                    </li>
                   </ul>
                 </div>
-                <ul className="navbar-nav ">
-                  <li className="nav-item ">
-                  </li>
-                </ul>
+                  <ul className="navbar-nav ">
+             <li className="nav-item ">
+             <Link className="nav-link d-flex" to="/logout">Salir</Link>
+            </li>
+          </ul>
               </div>
             </div>
           </nav>

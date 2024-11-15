@@ -1,13 +1,34 @@
-import { useState } from "react";
-import { useLogin } from "../../hook/useLogin";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useLogin from "../../hook/useLogin";
+import { userStore } from "../../stores/userStore";
 import "./Login.css";
 import "../Style/Style.css";
-import { Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn } = useLogin();
+  const [login, setLogin] = useState(0);
+  const setUser = userStore(state=> state.setUser)
+  const navigate = useNavigate();
+  const { cargando, error } = useLogin(login);
+
+  const handleSubmit = (e : any ) => {
+    setLogin(login + 1);
+    e.preventDefault();
+  };
+
+  useEffect( () => {
+
+    var berallogin: any = window.localStorage.getItem('berallogin')
+
+    const user = JSON.parse(berallogin)
+    if (user !== null)
+    {
+     setUser(user) 
+     navigate("/ordenes")
+    }
+},[])
   return (
     <div className="todo">
       <div className="wrapper rounded-top">
@@ -18,7 +39,7 @@ const Login = () => {
             className="img-logo"
           />
         </div>
-        <form onSubmit={signIn}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Usuario</label>
             <input
@@ -52,6 +73,8 @@ const Login = () => {
               Iniciar sesión
             </button>
           </div>
+          <p>{cargando}</p>
+        <p>{error}</p>
         </form>
       </div>
     </div>

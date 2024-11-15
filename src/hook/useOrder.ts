@@ -25,7 +25,6 @@ export const useOrder = () => {
     fetch(appSetting.urlApi + "/api/orders", requestOptions)
       .then((response) => response.json())
       .then((orderData) => {
-        console.log(orderData);
         setOrder(orderData);
       })
       .catch((error) => console.error(error));

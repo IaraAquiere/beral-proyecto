@@ -81,7 +81,7 @@ const Register = () => {
                 value={newUser?.country}
                 onChange={handleChange} />
             </div>
-            <div className="col-md-4">
+            <div className="col-md-12">
               <label className="form-floting">Telefono</label>
               <input type="number"
                 className="form-control"
