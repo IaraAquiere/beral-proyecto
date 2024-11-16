@@ -26,7 +26,7 @@ const Login = () => {
     if (user !== null)
     {
      setUser(user) 
-     navigate("/ordenes")
+     navigate("/")
     }
 },[])
   return (
