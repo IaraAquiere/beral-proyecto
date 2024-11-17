@@ -1,10 +1,9 @@
 export interface IProducto {
     id: number,
-    codigo: string,
-    cantidad: number,
-    descripcion: string,
-    precio: number,
-    importe: number,
+    productCode: string,
+    quantity: number,
+    description: string,
+    price: number,
+    import: number,
     stock: number,
   }
-

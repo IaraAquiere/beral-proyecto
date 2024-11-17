@@ -10,7 +10,7 @@ import { appSetting } from "../../settings/appsettings";
 
 export default function Cart() {
     const tk = userStore(state => state.usuario?.token)
-    const items = userStore(state => state)
+    const items = userStore(state => state.items)
     const vaciar = userStore(state => state.vaciar)
     const [productos, setProductos] = useState<IProducto[]>([])
     const [filtrados, setFiltrados] = useState<IProducto[]>([]);
@@ -30,7 +30,7 @@ export default function Cart() {
             fetch(appSetting.urlApi + "/api/articulos/listar/0", requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
-                    var data = JSON.parse(result);
+                    const data = JSON.parse(result)
                     setProductos(data as IProducto[])
                     setFiltrados(data as IProducto[])
                     setBuscar("")
@@ -45,14 +45,14 @@ export default function Cart() {
 
     const busquedaProductos = (e: string) => {
         setBuscar(e)
-        setFiltrados(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.toUpperCase()) > -1))
+        setFiltrados(productos.filter(p => p.description.toUpperCase().indexOf(e.toUpperCase()) > -1))
     };
     const GuardarOrden = () => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", "Bearer " + tk);
 
-        var ordenWeb = {
+        const ordenWeb = {
             Items: items,
         };
 
@@ -147,7 +147,7 @@ export default function Cart() {
                 <tbody>
 
                     {
-                        filtrados.map((p) => (
+                        filtrados.map(( p : IProducto) => (
                             <tr key={p.id}>
                                 <Producto producto={p} />
                             </tr>

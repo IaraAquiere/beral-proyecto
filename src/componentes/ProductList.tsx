@@ -1,3 +1,4 @@
+import { IProducto } from "../interfaces/IProducto";
 import { userStore } from "../stores/userStore";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -6,13 +7,13 @@ const ProductList = () => {
     const borrarProducto = userStore(state => state.borrarProducto);
     const agregarProducto = userStore(state => state.agregarProducto);
 
-    const aumentarCantidad = (producto: any) => {
-        agregarProducto({ ...producto, cantidad: +1 }); 
+    const aumentarCantidad = (producto: IProducto) => {
+        agregarProducto({ ...producto, quantity: +1 }); 
     };
 
-    const disminuirCantidad = (producto: any) => {
-        if (producto.cantidad > 1) {
-            agregarProducto({ ...producto, cantidad: -1 }); 
+    const disminuirCantidad = (producto: IProducto) => {
+        if (producto.quantity > 1) {
+            agregarProducto({ ...producto, quantity: -1 }); 
         } else {
             borrarProducto(producto); 
         }
@@ -21,9 +22,9 @@ const ProductList = () => {
     return (
         <>
             <tbody className="table-group-divider">
-                {items.map((product : any) => (
+                {items.map((product : IProducto) => (
                     <tr key={product.id}>
-                        <td>{product.descripcion}</td>
+                        <td>{product.description}</td>
                         <td className="boton">
                             <div className="d-flex align-items-center">
                                 <button
@@ -32,7 +33,7 @@ const ProductList = () => {
                                 >
                                     -
                                 </button>
-                                <div>{product.cantidad}</div>
+                                <div>{product.quantity}</div>
                                 <button
                                     className="boton-mas-menos ms-2"
                                     onClick={() => aumentarCantidad(product)}
@@ -41,8 +42,8 @@ const ProductList = () => {
                                 </button>
                             </div>
                         </td>
-                        <td>$ {product.precio}</td>
-                        <td>$ {product.cantidad * product.precio}</td>
+                        <td>$ {product.price}</td>
+                        <td>$ {product.quantity * product.price}</td>
                         <td>
                             <div className="d-flex align-items-center ps-2">
                                 <button

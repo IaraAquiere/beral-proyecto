@@ -8,7 +8,7 @@ export const userStore = create<IUserStore>((set,get) => ({
     logueado: false,
     usuario: undefined,
     items: [],
-    agregarProducto: (producto: { id: any; cantidad: any; }) =>{
+    agregarProducto: (producto) =>{
         const { items } = get();
 
         const newItems = [...items];
@@ -17,16 +17,16 @@ export const userStore = create<IUserStore>((set,get) => ({
     
         if(indice > -1)
         {
-            newItems[indice] = {...newItems[indice], cantidad: newItems[indice].cantidad + producto.cantidad}
+            newItems[indice] = {...newItems[indice], quantity: newItems[indice].quantity + producto.quantity}
             set(() => ({ items: newItems }))
         } else
         {
           set((state) => ({items: [...state.items, producto] }))
         }
       },
-      borrarProducto: (producto: { id: any; }) =>{
+      borrarProducto: (producto: { id: number; }) =>{
        set((state) => ({
-      items: state.items.filter((item: { id: any; }) => item.id !== producto.id),
+      items: state.items.filter((item: { id: number; }) => item.id !== producto.id),
     }));
       },
     setId: (p: string) => {
