@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
+import { IUser } from "../interfaces/IUser";
+import { appSetting } from "../settings/appsettings";
 
 export const useUsersList = () => {
-    const [users, setUsers] = useState<any[]>([]);
+    const [users, setUsers] = useState<IUser[]>([]);
     
     useEffect(() => {
         const requestOptions = {
             method: "GET",
         };
 
-        fetch("http://localhost:5000/api/User/GetAll", requestOptions)
+        fetch( appSetting.urlApi + "/api/User/GetAll", requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setUsers(result);
@@ -17,5 +19,5 @@ export const useUsersList = () => {
                 console.error("Error fetching users:", error);
             });
     }, []);
-    return { users }
+    return { users, setUsers }
 }

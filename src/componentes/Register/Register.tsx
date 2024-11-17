@@ -17,15 +17,7 @@ const Register = () => {
             />
           </div>
           <form className="row g-3" onSubmit={SaveUser}>
-            <div className="col-md-6">
-              <label className="form-floting">Usuario</label>
-              <input type="text"
-                className="form-control"
-                name='username'
-                value={newUser?.username}
-                onChange={handleChange} />
-            </div>
-            <div className="col-md-6">
+            <div className="col-md-12">
               <label className="form-floting">Email</label>
               <input type="email"
                 className="form-control"

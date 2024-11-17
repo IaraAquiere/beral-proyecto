@@ -11,7 +11,7 @@ const Login = () => {
   const [login, setLogin] = useState(0);
   const setUser = userStore(state=> state.setUser)
   const navigate = useNavigate();
-  const { cargando, error } = useLogin(login);
+  const { cargando, error } = useLogin(login, username, password);
 
   const handleSubmit = (e : any ) => {
     setLogin(login + 1);
@@ -41,7 +41,7 @@ const Login = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Usuario</label>
+            <label className="form-label">Email</label>
             <input
               name="username"
               type="text"

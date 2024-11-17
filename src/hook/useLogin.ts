@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { appSetting } from "../settings/appsettings";
 import { useEffect, useState } from "react";
 import { userStore } from "../stores/userStore";
+import { IUser } from "../interfaces/IUser";
 
-export const useLogin = (login: number) => {
+export const useLogin = (login: number, username : string, password : string) => {
     const [cargando, setCargando] = useState("");
     const [error, setError] = useState<string>("");
     const navigate = useNavigate();
@@ -18,8 +19,8 @@ export const useLogin = (login: number) => {
             myHeaders.append("Content-Type", "application/json");
 
             const raw = JSON.stringify({
-                "Username": "ADMIN",
-                "Password": "ADMIN"
+                "Username": username,
+                "Password": password
             });
 
             const requestOptions = {
@@ -31,17 +32,20 @@ export const useLogin = (login: number) => {
             fetch(appSetting.urlApi + "/api/User/Login", requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
-                    var login = JSON.parse(result);
+                    const login = JSON.parse(result);
 
                     if (login.token != undefined) {
-                        const user = {
+                        const user : IUser= {
+                            id : 0,
                             token: login.token,
                             username: login.username,
                             password: login.password,
-                            nombre: login.nombre,
                             cuit: login.cuit,
-                            phone: login.phonets
+                            phone: login.phonets,
+                            active: login.active,
+                            isAdmin: login.isAdmin
                         }
+                        console.log(user);
                         SetUser(user)
                         localStorage.setItem("berallogin", JSON.stringify(user));
                         navigate("/orders");

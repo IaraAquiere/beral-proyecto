@@ -4,6 +4,7 @@ import "./NavBar.css";
 
 const NavBar = () => {
   const logueado = userStore(state => state.logueado)
+  const usuario = userStore(state => state.usuario)
   return (
     <header>
       {logueado ?
@@ -25,15 +26,22 @@ const NavBar = () => {
                     <li className="nav-item">
                       <Link className="nav-link" to="/cart">Carrito</Link>
                     </li>
+                    { usuario?.isAdmin ? 
                     <li className="nav-item">
                       <Link className="nav-link" to="/userlist">Lista Usuarios</Link>
-                    </li>
+                    </li> : <></>
+                    }
                   </ul>
                 </div>
                   <ul className="navbar-nav ">
-             <li className="nav-item ">
-             <Link className="nav-link d-flex" to="/logout">Salir</Link>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                {usuario?.username}</a>
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="/logout">Salir</Link></li>              
+              </ul>
             </li>
+
           </ul>
               </div>
             </div>

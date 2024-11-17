@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 export const useRegister = () => {
     const [newUser, setNewUser] = useState<IUser>({
+        id : 0,
         username: "",
         password: "",
         cuit: 0,
@@ -17,6 +18,7 @@ export const useRegister = () => {
         state: "",
         country: "",
         phone: 0,
+        active: false
       });
     
       const navigate = useNavigate();
