@@ -9,4 +9,5 @@ export interface IUser {
   state?: string,
   country?: string,
   phone: number,
+  token: string,
 }
