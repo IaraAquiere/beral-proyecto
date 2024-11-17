@@ -104,7 +104,6 @@ export default function Cart() {
                     <hr />
                 </div>
             </div>
-
             <div className="row ">
                 <div className="col ">
                     <legend>Categorias</legend>

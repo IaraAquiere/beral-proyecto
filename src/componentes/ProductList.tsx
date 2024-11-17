@@ -1,4 +1,5 @@
 import { userStore } from "../stores/userStore";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const ProductList = () => {
     const items = userStore(state => state.items);
@@ -26,14 +27,14 @@ const ProductList = () => {
                         <td className="boton">
                             <div className="d-flex align-items-center">
                                 <button
-                                    className="btn  btn-sm me-2"
+                                    className="boton-mas-menos me-2"
                                     onClick={() => disminuirCantidad(product)}
                                 >
                                     -
                                 </button>
                                 <div>{product.cantidad}</div>
                                 <button
-                                    className="btn btn-sm ms-2"
+                                    className="boton-mas-menos ms-2"
                                     onClick={() => aumentarCantidad(product)}
                                 >
                                     +
@@ -48,7 +49,7 @@ const ProductList = () => {
                                     className="btn btn-danger btn-xl"
                                     onClick={() => borrarProducto(product)}
                                 >
-
+                                    <RiDeleteBin6Line />
                                 </button>
                             </div>
                         </td>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { userStore } from "../../stores/userStore";
+import "./Producto.css"
 
 const Producto = ({producto}: any) => {
   const agregarProducto  = userStore(state => state.agregarProducto)
@@ -33,11 +34,11 @@ const Producto = ({producto}: any) => {
       <td>${producto.precio}</td>
       <td className="boton">
         <div className="d-flex align-items-center">
-          <button className="btn  btn-sm me-2" onClick={restar}>
+          <button className="boton-mas-menos me-2" onClick={restar}>
             -
           </button>
           <div>{contador}</div>
-          <button className="btn btn-sm ms-2" onClick={sumar}>
+          <button className="boton-mas-menos ms-2" onClick={sumar}>
             +
           </button>
         </div>
@@ -46,7 +47,7 @@ const Producto = ({producto}: any) => {
         <div className="d-flex justify-content-center">
           <button
             type="button"
-            className="btn btn-sm border-radius w-100"
+            className="boton-agregar"
             onClick={() => AgregarProducto(producto)}
           >
             Agregar

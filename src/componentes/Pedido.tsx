@@ -1,5 +1,5 @@
 import "./Pedido.css"
-import ProductList from "./productList";
+import ProductList from "./ProductList";
 
 const Pedido = () => {
   return (
@@ -17,7 +17,7 @@ const Pedido = () => {
                 <ProductList />
          </table>
          <div className="d-flex justify-content-end">
-          <h5>Total: $</h5>
+          <h5>Total: $ 236.300</h5>
           </div>
          
     </>
