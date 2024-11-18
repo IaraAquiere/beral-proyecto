@@ -1,7 +1,8 @@
 export interface IUserOrder {
-    nroorder: number,
-    clientcode: number,
-    orderdate: number,
+    id: number,
+    clientCode: string,
+    sellerCode: string,
+    listCode: string
+    orderDate: Date,
     userid: number,
-    sellercode: number,
 }

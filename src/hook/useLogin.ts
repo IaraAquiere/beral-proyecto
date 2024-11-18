@@ -19,7 +19,7 @@ export const useLogin = (login: number, username : string, password : string) =>
             myHeaders.append("Content-Type", "application/json");
 
             const raw = JSON.stringify({
-                "Username": username,
+                "Email": username,
                 "Password": password
             });
 

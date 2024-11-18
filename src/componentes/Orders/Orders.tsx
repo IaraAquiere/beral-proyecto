@@ -24,7 +24,7 @@ const Orders = () => {
                 <th>Nro. pedido</th>
                 <th>Cod. cliente</th>
                 <th>Cod. vendedor</th>
-                <th>Id user</th>
+                <th>Nro. Lista</th>
                 <th></th>
               </tr>
             </thead>
@@ -32,10 +32,10 @@ const Orders = () => {
               {result.map((orderItem) => (
                 <tr key={orderItem.id}>
                   <td>{orderItem.orderDate}</td>
-                  <td>{orderItem.orderNo}</td>
+                  <td>{orderItem.id}</td>
                   <td>{orderItem.clientCode}</td>
                   <td>{orderItem.sellerCode}</td>
-                  <td>{orderItem.userId}</td>
+                  <td>{orderItem.listCode}</td>
                   <td>
                     <button
                       type="button"

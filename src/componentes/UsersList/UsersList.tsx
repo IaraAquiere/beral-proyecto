@@ -9,7 +9,7 @@ const UsersList = () => {
 
  const Activar = (user : IUser) => {
 
-  if(user.active)
+  if(user.isActive)
   {
     alert("Usuario Ya esta Activo")
     return;
@@ -19,7 +19,7 @@ const UsersList = () => {
   myHeaders.append("Content-Type", "application/json");
 
 const raw = JSON.stringify({
-  "Username": user.username,
+  "Username": user.email,
   "Password": ""
 });
 
@@ -36,10 +36,10 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
 
 
   const usuarios = users.map(u => {
-      if (u.username === user.username) {
+      if (u.email === user.email) {
         return {
           ...u,
-          active: !user.active,
+          active: !user.isActive,
         };
       } else {
         return u;
@@ -61,9 +61,8 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Usuario</th>
+          <th scope="col">Mail</th>
             <th scope="col">CUIT</th>
-            <th scope="col">Mail</th>
             <th scope="col">Empresa</th>
             <th scope="col">Calle</th>
             <th scope="col">Localidad</th>
@@ -75,9 +74,8 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.username}</td>
-              <td>{user.cuit}</td>
               <td>{user.email}</td>
+              <td>{user.cuit}</td>
               <td>{user.companyName}</td>
               <td>{user.address}</td>
               <td>{user.locality}</td>
@@ -90,7 +88,7 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
                       type="checkbox"
                       role="switch"
                       onChange={ () => Activar(user) }
-                      checked={user.active} 
+                      checked={user.isActive} 
                     />
                   </div>
               </td>
