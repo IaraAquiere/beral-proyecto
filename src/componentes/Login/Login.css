@@ -1,6 +1,6 @@
   .wrapper {
-    width: 510px;
-    height: 435px;
+    width: 560px;
+    height: 500px;
     background-color: rgb(255, 255, 255);
     padding: 6rem;
   }
@@ -12,4 +12,5 @@
     background-color: #eb812a;
     color: white;
     border-radius: 8px;
+    margin-top: 10px;
   }
