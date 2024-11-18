@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react"
 import { userStore } from "../stores/userStore"
+import { appSetting } from "../settings/appsettings"
 
 export default function Categorias() {
 
     const [data, setData] = useState<any>({})
     const setId  = userStore(state => state.setId)
-    
+    const token = userStore(state => state.usuario?.token)
+
     const Actualizar = async (id: string) => {
-        const URL = "http://localhost:5000/";
         
         const showData = async () => {
+
             const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", "Bearer " + token);
 
             const requestOptions = {
                 method: "GET",
                 headers: myHeaders,
             };
 
-            fetch(URL + "Categoria/Get/" + id, requestOptions)
+            fetch(appSetting.urlApi + "/api/Category/Get/" + id, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
-                    var data = JSON.parse(result);
+                    const data = JSON.parse(result);
                     setData(data)
                     MandarId(data.seleccionada?.path)
                 })
@@ -33,7 +37,7 @@ export default function Categorias() {
     const MandarId = (id:string) => {setId(id)}
 
     useEffect(() => {
-        Actualizar("2")
+        Actualizar("45")
     }, []);
 
     const clickLink = (param: string) => {

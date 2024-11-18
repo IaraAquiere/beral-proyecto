@@ -8,9 +8,10 @@ export const userStore = create<IUserStore>((set,get) => ({
     logueado: false,
     usuario: undefined,
     items: [],
+    total: 0,
     agregarProducto: (producto) =>{
         const { items } = get();
-
+        const { total } = get();
         const newItems = [...items];
     
         const indice = newItems.findIndex(item => item.id == producto.id )
@@ -19,15 +20,21 @@ export const userStore = create<IUserStore>((set,get) => ({
         {
             newItems[indice] = {...newItems[indice], quantity: newItems[indice].quantity + producto.quantity}
             set(() => ({ items: newItems }))
+
+            set(() => ({ total: total + (  producto.price * producto.quantity)  }))
         } else
         {
           set((state) => ({items: [...state.items, producto] }))
+
+          set(() => ({ total: total + (  producto.price * producto.quantity)  }))
         }
       },
-      borrarProducto: (producto: { id: number; }) =>{
+      borrarProducto: (producto) =>{
+      const { total } = get();
        set((state) => ({
       items: state.items.filter((item: { id: number; }) => item.id !== producto.id),
     }));
+    set(() => ({ total: total - (  producto.price * producto.quantity)  }))
       },
     setId: (p: string) => {
         set(() => ({ idFolder: p }))
@@ -41,5 +48,9 @@ export const userStore = create<IUserStore>((set,get) => ({
         set(() => ({ items: [] }))
         set(() => ({ logueado: false }))
     },
-    vaciar: () => set(() => ({ items: [] }))
+    vaciar: () => 
+    {
+      set(() => ({ items: [] }))
+      set(() => ({ total: 0 }))
+    }
 }))

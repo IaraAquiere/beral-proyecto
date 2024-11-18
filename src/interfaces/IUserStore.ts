@@ -7,6 +7,7 @@ export interface IUserStore  {
     logueado: boolean,
     usuario?: IUser,
     items: IProducto[],
+    total: number,
     agregarProducto: (producto: IProducto) => void,
     borrarProducto: (producto: IProducto) => void,
     setId: (p: string) => void,

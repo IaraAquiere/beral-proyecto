@@ -45,7 +45,6 @@ export const useLogin = (login: number, username : string, password : string) =>
                             active: login.active,
                             isAdmin: login.isAdmin
                         }
-                        console.log(user);
                         SetUser(user)
                         localStorage.setItem("berallogin", JSON.stringify(user));
                         navigate("/orders");

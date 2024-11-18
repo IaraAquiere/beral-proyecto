@@ -1,7 +1,10 @@
+import { userStore } from "../stores/userStore";
 import "./Pedido.css"
 import ProductList from "./ProductList";
 
 const Pedido = () => {
+
+  const total = userStore(state => state.total)
   return (
     <>
         <table className="table table-hover ">
@@ -17,7 +20,7 @@ const Pedido = () => {
                 <ProductList />
          </table>
          <div className="d-flex justify-content-end">
-          <h5>Total: $ 236.300</h5>
+          <h5>Total: $ { total }</h5>
           </div>
          
     </>

@@ -9,7 +9,7 @@ import Categorias from "../Categorias";
 import { appSetting } from "../../settings/appsettings";
 
 export default function Cart() {
-    const tk = userStore(state => state.usuario?.token)
+    const token = userStore(state => state.usuario?.token)
     const items = userStore(state => state.items)
     const vaciar = userStore(state => state.vaciar)
     const [productos, setProductos] = useState<IProducto[]>([])
@@ -21,13 +21,15 @@ export default function Cart() {
     const Actualizar = async () => {
         const showData = async () => {
             const myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer " + tk);
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", "Bearer " + token);
+
             const requestOptions = {
                 method: "POST",
                 headers: myHeaders,
             };
 
-            fetch(appSetting.urlApi + "/api/articulos/listar/0", requestOptions)
+            fetch(appSetting.urlApi + "/api/articulos/listar/" + idFolder, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
                     const data = JSON.parse(result)
@@ -50,21 +52,17 @@ export default function Cart() {
     const GuardarOrden = () => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", "Bearer " + tk);
+        myHeaders.append("Authorization", "Bearer " + token);
 
-        const ordenWeb = {
-            Items: items,
-        };
-
-        const raw = JSON.stringify(ordenWeb);
+        const raw = JSON.stringify(items);
 
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
         };
-
-        fetch( appSetting.urlApi + "stock/GuardarOrden", requestOptions)
+        console.log(raw)
+        fetch( appSetting.urlApi + "/api/Orders", requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('No se puede guardar la orden')
@@ -115,7 +113,7 @@ export default function Cart() {
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
                     >
-                        Ver Pedido </button>
+                        Ver Pedido { items.length > 0 ? "(" +items.length + ")" : ""   }</button>
                 </div>
             </div>
             <Categorias />
