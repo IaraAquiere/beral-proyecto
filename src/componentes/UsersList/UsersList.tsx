@@ -51,7 +51,7 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
 
   return (
     <div className="container">
-      <h2>Lista de usuarios a dar de alta</h2>
+      <h2>Usuarios</h2>
       <hr />
       <Search
         className1="d-flex flex-row justify-content-center pb-5 pt-4"

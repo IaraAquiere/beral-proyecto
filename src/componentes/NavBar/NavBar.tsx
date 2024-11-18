@@ -20,9 +20,11 @@ const NavBar = () => {
                   <ul className="navbar-nav nav-underline">
                     <li className="nav-item">
                     </li>
+                     
                     <li className="nav-item">
-                      <Link className="nav-link" to="/orders">Ordenes</Link>
-                    </li>
+                      <Link className="nav-link" to="/orders">{ usuario?.isAdmin ? "Adm. de Pedidos" : "Ordenes" }</Link>
+                    </li> 
+                    
                     <li className="nav-item">
                       <Link className="nav-link" to="/cart">Carrito</Link>
                     </li>

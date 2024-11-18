@@ -2,12 +2,15 @@ import ModalOrders from "./ModalOrders";
 import Search from "../Search/Search.tsx";
 import useOrder from "../../hook/useOrder.ts";
 
+import { userStore } from "../../stores/userStore.tsx";
+
 const Orders = () => {
   const { orderSearch, result, search } = useOrder();
+  const isAdmin = userStore(state => state.usuario?.isAdmin)
   return (
     <>
       <div className="container">
-        <h2>Mis pedidos</h2>
+        <h2>{ isAdmin ? "Adm. de Pedidos" : "Mis pedidos" }</h2>
         <hr />
         <Search
           className1="d-flex flex-row justify-content-center pb-5 pt-4"
@@ -20,6 +23,7 @@ const Orders = () => {
           <table className="table table-hover">
             <thead>
               <tr>
+
                 <th>Fecha</th>
                 <th>Nro. pedido</th>
                 <th>Cod. cliente</th>
