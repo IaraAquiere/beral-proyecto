@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { appSetting } from "../settings/appsettings";
 import { userStore } from "../stores/userStore";
 
-export const useOrder = () => {
+export const useOrders = () => {
   const [order, setOrder] = useState<any[]>([]);
   const [search, setSearch] = useState<string>("");
   const token = userStore(state => state.usuario?.token)
@@ -44,4 +44,4 @@ export const useOrder = () => {
   return { order, orderSearch, result, search  }
 };
 
-export default useOrder;
+export default useOrders;

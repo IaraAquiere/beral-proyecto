@@ -37,7 +37,7 @@ export default function Categorias() {
     const MandarId = (id:string) => {setId(id)}
 
     useEffect(() => {
-        Actualizar("45")
+        Actualizar("1")
     }, []);
 
     const clickLink = (param: string) => {

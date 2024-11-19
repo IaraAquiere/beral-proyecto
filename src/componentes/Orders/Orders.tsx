@@ -1,12 +1,22 @@
-import ModalOrders from "./ModalOrders";
+import ModalOrder from "./ModalOrder";
 import Search from "../Search/Search.tsx";
-import useOrder from "../../hook/useOrder.ts";
+import useOrders from "../../hook/useOrders.ts";
 
 import { userStore } from "../../stores/userStore.tsx";
+import { useState } from "react";
+import { appSetting } from "../../settings/appsettings.ts";
+import { IUserOrder } from "../../interfaces/IOrders.ts";
+import Order from "./Order.tsx";
 
 const Orders = () => {
-  const { orderSearch, result, search } = useOrder();
-  const isAdmin = userStore(state => state.usuario?.isAdmin)
+    const { orderSearch, result, search } = useOrders();
+  const isAdmin = userStore(state => state.usuario?.isAdmin)  
+    const [id, setId] = useState<number>(0);
+
+  const SeeOrder = (id : number) => {
+    setId(id)
+  }
+
   return (
     <>
       <div className="container">
@@ -35,7 +45,7 @@ const Orders = () => {
             <tbody className="table-group">
               {result.map((orderItem) => (
                 <tr key={orderItem.id}>
-                  <td>{orderItem.orderDate}</td>
+                  <td>{orderItem.orderDateFormat}</td>
                   <td>{orderItem.id}</td>
                   <td>{orderItem.clientCode}</td>
                   <td>{orderItem.sellerCode}</td>
@@ -46,6 +56,7 @@ const Orders = () => {
                       className="btn float-end btn-sm btn-widex"
                       data-bs-toggle="modal"
                       data-bs-target="#myModal"
+                      onClick={() => SeeOrder(orderItem.id)}
                     >
                       Ver
                     </button>
@@ -55,8 +66,24 @@ const Orders = () => {
             </tbody>
           </table>
         </div>
-        <ModalOrders />
       </div>
+
+      <div className="modal" id="myModal">
+            <div className="modal-dialog modal-dialog-scrollable modal-xl">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title">Detalle de pedido</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                      <Order pId={id} />
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </>
   );
 };

@@ -1,3 +1,3 @@
 export const appSetting = {
-    "urlApi": "http://localhost:5000"
+    "urlApi": "http://localhost:5187"
 }

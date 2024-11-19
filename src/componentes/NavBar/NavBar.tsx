@@ -37,7 +37,7 @@ const NavBar = () => {
                   <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                      {usuario?.username}</a>
+                      {usuario?.companyName}</a>
                     <ul className="dropdown-menu">
                       <li><Link className="dropdown-item" to="/logout">Salir   <IoLogOutOutline />
                       </Link></li>

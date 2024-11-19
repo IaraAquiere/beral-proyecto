@@ -4,7 +4,7 @@ import { IUser } from "../interfaces/IUser";
 
 export const userStore = create<IUserStore>((set,get) => ({
     id: 1,
-    idFolder: "0",
+    idFolder: "1",
     logueado: false,
     usuario: undefined,
     items: [],
