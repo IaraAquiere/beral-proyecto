@@ -7,6 +7,8 @@ import NavBar from "./componentes/NavBar/NavBar"
 import Logout from "./componentes/Login/Logout"
 import ProtectedRoute from "./componentes/ProtectedRoute"
 import Cart from "./componentes/Cart/Cart"
+import Listas from "./componentes/Listas/Listas"
+import CuentaCorriente from "./componentes/CuentaCorriente/cuentaCorriente"
 
 
 function App() {
@@ -21,6 +23,8 @@ return (
         <Route path="/orders" element={<Orders/>}/> 
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/userlist" element={<UsersList/>}/>
+        <Route path="/listas" element={<Listas />}/>
+        <Route path="/cuentacorriente" element={<CuentaCorriente />}/>
     </Route>
 </Routes>
 </BrowserRouter>

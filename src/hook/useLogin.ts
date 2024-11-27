@@ -33,18 +33,19 @@ export const useLogin = (login: number, username : string, password : string) =>
                 .then((response) => response.text())
                 .then((result) => {
                     const login = JSON.parse(result);
-
+                    console.log(login)
                     if (login.token != undefined) {
                         const user : IUser= {
                             id : 0,
                             token: login.token,
-                            username: login.username,
+                            email: login.companyName,
                             password: login.password,
                             cuit: login.cuit,
                             phone: login.phonets,
-                            active: login.active,
+                            isActive: login.active,
                             isAdmin: login.isAdmin
                         }
+                        console.log(login)
                         SetUser(user)
                         localStorage.setItem("berallogin", JSON.stringify(user));
                         navigate("/orders");

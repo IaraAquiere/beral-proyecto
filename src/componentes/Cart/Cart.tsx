@@ -8,7 +8,12 @@ import "./Cart.css"
 import Categorias from "../Categorias";
 import { appSetting } from "../../settings/appsettings";
 
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare let bootstrap: any;
+
 export default function Cart() {
+
     const token = userStore(state => state.usuario?.token)
     const items = userStore(state => state.items)
     const vaciar = userStore(state => state.vaciar)
@@ -79,7 +84,7 @@ export default function Cart() {
                     timer: 1500
                 });
                 vaciar();
-                document.getElementById('myModal')?.click();
+                bootstrap.Modal.getInstance(document.getElementById('myModal')).hide();
             })
             .catch((error) => {
                 Swal.fire({

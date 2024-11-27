@@ -59,7 +59,7 @@ const Order = (props: any) => {
                   </h4>
                   <div className="row">
                     <span className="col-6">Fecha</span>
-                    <span className="col-6 text-sm-end">{data.orderDateFormat}</span>
+                    <span className="col-6 text-sm-end">{data.OrderDateFormat}</span>
                   </div>
                 </div>
               </div>

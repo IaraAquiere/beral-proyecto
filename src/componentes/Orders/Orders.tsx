@@ -1,11 +1,7 @@
-import ModalOrder from "./ModalOrder";
 import Search from "../Search/Search.tsx";
 import useOrders from "../../hook/useOrders.ts";
-
 import { userStore } from "../../stores/userStore.tsx";
 import { useState } from "react";
-import { appSetting } from "../../settings/appsettings.ts";
-import { IUserOrder } from "../../interfaces/IOrders.ts";
 import Order from "./Order.tsx";
 
 const Orders = () => {

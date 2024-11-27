@@ -1,8 +1,5 @@
-import { IUserOrder } from "../../interfaces/IOrders"
-import { IProducto } from "../../interfaces/IProducto"
 
-const ModalOrder = ({order}: IUserOrder) => {
-    console.log(order)
+const ModalOrder = () => {
     return (
         <div className="modal" id="myModal">
             <div className="modal-dialog modal-dialog-scrollable modal-xl">

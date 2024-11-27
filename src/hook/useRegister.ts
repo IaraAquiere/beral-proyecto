@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 export const useRegister = () => {
     const [newUser, setNewUser] = useState<IUser>({
         id : 0,
-        username: "",
         password: "",
         cuit: 0,
         email: "",
@@ -18,12 +17,13 @@ export const useRegister = () => {
         state: "",
         country: "",
         phone: 0,
-        active: false
+        isActive: false,
+        isAdmin: false
       });
     
       const navigate = useNavigate();
     
-      const handleChange = (e: any) => {
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setNewUser({ ...newUser, [name]: value });
       };

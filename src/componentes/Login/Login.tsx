@@ -20,7 +20,7 @@ const Login = () => {
 
   useEffect( () => {
 
-    var berallogin: any = window.localStorage.getItem('berallogin')
+    const berallogin: any = window.localStorage.getItem('berallogin')
 
     const user = JSON.parse(berallogin)
     if (user !== null)
