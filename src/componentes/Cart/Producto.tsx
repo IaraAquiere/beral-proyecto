@@ -4,7 +4,7 @@ import "./Producto.css"
 import { IProducto } from "../../interfaces/IProducto";
 
 
-const Producto = ( {producto}) => {
+const Producto = ( {producto} : any) => {
   const agregarProducto  = userStore(state => state.agregarProducto)
 
   const [contador, setContador] = useState(0);

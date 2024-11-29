@@ -5,7 +5,21 @@ import { userStore } from "../stores/userStore";
 
 export const useUsersList = () => {
     const [users, setUsers] = useState<IUser[]>([]);
+    const [search, setSearch] = useState<string>("");
     const token  = userStore(state => state.usuario?.token)
+
+    const userListSearch = (e: any) => {
+        setSearch(e.target.value);
+      };
+    
+      const resultUserList = search
+        ? users.filter((userList) => {
+          return (
+            userList.email.includes(search) ||
+            userList.cuit.toString().includes(search)           
+          );
+        })
+        : users;
 
     useEffect(() => {
 
@@ -27,5 +41,5 @@ export const useUsersList = () => {
                 console.error("Error fetching users:", error);
             });
     }, []);
-    return { users, setUsers }
+    return { users, setUsers, search, userListSearch, resultUserList }
 }

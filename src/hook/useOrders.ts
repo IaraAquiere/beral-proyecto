@@ -14,7 +14,9 @@ export const useOrders = () => {
   const result = search
     ? order.filter((order) => {
       return (
-        order.orderDate.includes(search)
+        (order.orderDateFormat.includes(search)) || 
+        order.id.toString().includes(search) ||
+        order.clientCode.includes(search)
       );
     })
     : order;

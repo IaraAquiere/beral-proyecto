@@ -5,7 +5,7 @@ import { appSetting } from "../../settings/appsettings.ts";
 import Search from "../Search/Search.tsx";
 
 const UsersList = () => {
- const { users, setUsers } = useUsersList();
+ const { users, setUsers, search, userListSearch, resultUserList} = useUsersList();
 
  const Activar = (user : IUser) => {
 
@@ -57,6 +57,8 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
         className1="d-flex flex-row justify-content-center pb-5 pt-4"
         className2="form-control form-control-lg border border-dark-subtle w-50"
         placeholder="Buscar Usuario"
+        onChange={userListSearch}
+          value={search}
       />
       <table className="table table-hover">
         <thead>
@@ -72,7 +74,7 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {resultUserList.map((user: any) => (
             <tr key={user.id}>
               <td>{user.email}</td>
               <td>{user.cuit}</td>
