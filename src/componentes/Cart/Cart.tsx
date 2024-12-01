@@ -171,7 +171,7 @@ export default function Cart() {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-danger float-start" data-bs-dismiss="modal" onClick={() => vaciar()}>Limpiar</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                            <button type="button" className="btn btn-primary" onClick={() => GuardarOrden()}>Guardar</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal"  onClick={() => GuardarOrden()}>Guardar</button>
                         </div>
                     </div>
                 </div>
