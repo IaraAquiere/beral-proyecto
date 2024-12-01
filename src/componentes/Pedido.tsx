@@ -19,7 +19,7 @@ const Pedido = () => {
                 </thead>
                 <ProductList />
          </table>
-         <div className="d-flex justify-content-end">
+         <div className="d-flex justify-content-end pe-5 pt-4">
           <h5>Total: $ { total }</h5>
           </div>
          
