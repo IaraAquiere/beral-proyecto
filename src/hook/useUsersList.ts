@@ -8,7 +8,7 @@ export const useUsersList = () => {
     const [search, setSearch] = useState<string>("");
     const token  = userStore(state => state.usuario?.token)
 
-    const userListSearch = (e: any) => {
+    const userListSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
       };
     

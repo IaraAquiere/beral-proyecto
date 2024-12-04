@@ -32,7 +32,7 @@ const MyAccount = () => {
     return (
         <>
             <div className="container">
-                <h2>Cuenta Corriente</h2>
+                <legend>Cuenta Corriente</legend>
                 <hr />
                 <table className="table table-hover">
                     <thead>

@@ -50,8 +50,7 @@ const Producto = ( {producto} : any) => {
           <button
             type="button"
             className="boton-agregar"
-            onClick={() => AgregarProducto(producto)}
-          >
+            onClick={() => AgregarProducto(producto)}>
             Agregar
           </button>
         </div>

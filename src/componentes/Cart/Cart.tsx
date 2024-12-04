@@ -6,7 +6,7 @@ import { IProducto } from "../../interfaces/IProducto";
 import Swal from "sweetalert2";
 import "./Cart.css"
 import "../Style/Style.css"
-import Categorias from "../Categorias";
+//import Categorias from "../Categorias";
 import { appSetting } from "../../settings/appsettings";
 
 
@@ -34,7 +34,7 @@ export default function Cart() {
                 method: "POST",
                 headers: myHeaders,
             };
-
+            
             fetch(appSetting.urlApi + "/api/articulos/listar/" + idFolder, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
@@ -47,6 +47,7 @@ export default function Cart() {
         };
         showData()
     }
+
     useEffect(() => {
         Actualizar()
     }, [idFolder]);
@@ -68,7 +69,7 @@ export default function Cart() {
             body: raw,
         };
         console.log(raw)
-        fetch( appSetting.urlApi + "/api/Orders", requestOptions)
+        fetch(appSetting.urlApi + "/api/Orders", requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('No se puede guardar la orden')
@@ -104,13 +105,15 @@ export default function Cart() {
         <div className="container">
             <div className="row ">
                 <div className="col ">
-                    <h2>Pedido</h2>
+                    <legend>Pedido</legend>
                     <hr />
                 </div>
             </div>
             <div className="row ">
                 <div className="col ">
-                    <legend>Categorias</legend>
+                    {
+                        //   <legend>Categorias</legend>
+                    }
                 </div>
                 <div className="col mt-2">
                     <button
@@ -119,10 +122,12 @@ export default function Cart() {
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
                     >
-                        Finalizar Compra { items.length > 0 ? "(" +items.length + ")" : ""   }</button>
+                        Finalizar Compra {items.length > 0 ? "(" + items.length + ")" : ""}</button>
                 </div>
             </div>
-            <Categorias />
+            {
+                //<Categorias />
+            }
             <div className="container">
                 <div className="d-flex flex-row justify-content-center m-4">
                     <input
@@ -151,7 +156,7 @@ export default function Cart() {
                 <tbody>
 
                     {
-                        filtrados.map(( p : IProducto) => (
+                        filtrados.map((p: IProducto) => (
                             <tr key={p.id}>
                                 <Producto producto={p} />
                             </tr>
@@ -167,12 +172,12 @@ export default function Cart() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body borderLeft">
-                            <Pedido/>
+                            <Pedido />
                         </div>
                         <div className="modal-footer borderLeft">
                             <button type="button" className="btn btn-danger float-start" data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal"  onClick={() => GuardarOrden()}>Guardar</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => GuardarOrden()}>Guardar</button>
                         </div>
                     </div>
                 </div>

@@ -60,7 +60,7 @@ const Invoices = () => {
     return (
         <>
             <div className="container">
-                <h2>Mis Comprobantes</h2>
+                <legend>Mis Comprobantes</legend>
                 <hr />
                 <table className="table  table-striped">
                     <thead>

@@ -4,7 +4,7 @@ import { userStore } from "../../stores/userStore";
 const Lists = () => {
     const token = userStore(state => state.usuario?.token)
     const Descargar = () => {
-        
+
 
         console.log("Holi");
         const myHeaders = new Headers();
@@ -23,39 +23,43 @@ const Lists = () => {
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = "listaDePrecios.xlsx";
-                document.body.appendChild(a); 
-                a.click();    
-                a.remove();         
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
             });
     }
 
     return (
         <>
             <div className="container">
-                <h2>Listas de Precios</h2>
-                <hr />
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nombre de la Lista</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody className="table-group">
-                        <tr>
-                            <td>Lista General</td>
-                            <td><button className="btn btn-primary float-end" onClick={() => Descargar()}>
-                                Descargar
-                            </button></td>
-                        </tr>
-                        <tr>
-                            <td>Lista ejemplo</td>
-                            <td><button className="btn btn-primary float-end">
-                                Descargar
-                            </button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <legend>Listas de Precios</legend>
+                <hr className="mb-5" />
+                <div className="container d-flex justify-content-center mt-5">
+                    <div className="col-4 me-3">
+                        <div className="card-deck text-center">
+                            <div className="card mb-4 ">
+                                <div className="card-header">
+                                    <h4 >Lista General</h4>
+                                </div>
+                                <div className="card-body">
+                                    <button type="button" className="btn btn-lg btn-block btn-outline-primary" onClick={() => Descargar()}>Descargar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 ms-3">
+                        <div className="card-deck text-center">
+                            <div className="card mb-4 ">
+                                <div className="card-header">
+                                    <h4 >Lista Ejemplo</h4>
+                                </div>
+                                <div className="card-body">
+                                    <button type="button" className="btn btn-lg btn-block btn-outline-primary">Descargar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

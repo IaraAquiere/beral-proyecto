@@ -22,7 +22,7 @@ const NavBar = () => {
                   </li>
 
                   <li className="nav-item">
-                    <Link className="nav-link" to="/orders">{usuario?.isAdmin ? "Adm. de Pedidos" : "Ordenes"}</Link>
+                    <Link className="nav-link" to="/orders">{usuario?.isAdmin ? "Adm. de Pedidos" : "Mis Pedidos"}</Link>
                   </li>
 
                   <li className="nav-item">
