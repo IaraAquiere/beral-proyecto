@@ -1,11 +1,11 @@
 //import { userStore } from "../../stores/userStore";
 import { useEffect, useState } from "react";
-import "./CuentaCorriente.css"
+import "./MyAccount.css"
 import { appSetting } from "../../settings/appsettings";
 import { userStore } from "../../stores/userStore";
 import { IAccount } from "../../interfaces/IAccount";
 
-const CuentaCorriente = () => {
+const MyAccount = () => {
     const [ctaCte ,setCtaCte] = useState<IAccount>()
     const token = userStore(state => state.usuario?.token)
 
@@ -65,4 +65,4 @@ const CuentaCorriente = () => {
     )
 }
 
-export default CuentaCorriente;
+export default MyAccount;

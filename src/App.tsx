@@ -7,8 +7,10 @@ import NavBar from "./componentes/NavBar/NavBar"
 import Logout from "./componentes/Login/Logout"
 import ProtectedRoute from "./componentes/ProtectedRoute"
 import Cart from "./componentes/Cart/Cart"
-import Listas from "./componentes/Listas/Listas"
-import CuentaCorriente from "./componentes/CuentaCorriente/cuentaCorriente"
+import MyAccount from "./componentes/MyAccount/MyAccount"
+import Lists from "./componentes/Lists/Lists"
+import Invoices from "./componentes/Invoices/Invoices"
+import ChangePass from "./componentes/Login/ChangePass"
 
 
 function App() {
@@ -23,8 +25,10 @@ return (
         <Route path="/orders" element={<Orders/>}/> 
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/userlist" element={<UsersList/>}/>
-        <Route path="/listas" element={<Listas />}/>
-        <Route path="/cuentacorriente" element={<CuentaCorriente />}/>
+        <Route path="/listas" element={<Lists />}/>
+        <Route path="/cuentacorriente" element={<MyAccount />}/>
+        <Route path="/miscomprobantes" element={<Invoices />}/>
+        <Route path="/cambiarpass" element={<ChangePass />}/>
     </Route>
 </Routes>
 </BrowserRouter>

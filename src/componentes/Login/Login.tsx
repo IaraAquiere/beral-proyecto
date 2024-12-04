@@ -1,37 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useLogin from "../../hook/useLogin";
 import { userStore } from "../../stores/userStore";
 import "./Login.css";
 import "../Style/Style.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(0);
-  const setUser = userStore(state=> state.setUser)
+  const setUser = userStore(state => state.setUser)
   const navigate = useNavigate();
   const { cargando, error } = useLogin(login, username, password);
+  const inputPassword = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = (e : any ) => {
+  const handleSubmit = (e: any) => {
     setLogin(login + 1);
     e.preventDefault();
   };
 
-  useEffect( () => {
+  const verPass = () => {
+    if (inputPassword.current) {
+      inputPassword.current.type = "text"
+    }
+  }
+
+  const NoPass = () => {
+    if (inputPassword.current) {
+      inputPassword.current.type = "password"
+    }
+  }
+
+  useEffect(() => {
 
     const berallogin: any = window.localStorage.getItem('berallogin')
 
     const user = JSON.parse(berallogin)
-    if (user !== null)
-    {
-     setUser(user) 
-     navigate("/orders")
+    if (user !== null) {
+      setUser(user)
+      navigate("/orders")
     }
-},[])
+  }, [])
+
   return (
     <div className="todo">
-      <div className="wrapper rounded-top">
+      <div className="wrapper rounded-top borderLeft">
         <div className="container div-img">
           <img
             src="https://www.beral.com.ar/wp-content/uploads/2021/01/Beral_logo.png"
@@ -52,29 +66,39 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Contraseña</label>
+          <label className="form-label">Contraseña</label>
+            <div className="my-class">
             <input
               type="password"
               className="form-control"
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              ref={inputPassword}
               required
             />
+
+            <i className="bi bi-eye marginEye fa-lg" 
+                onMouseDown={verPass}
+                onMouseUp={NoPass}  
+                onMouseOut={NoPass}  
+        ></i>
+            </div>
+
           </div>
           <div className="col-12">
-              <div>
-                <p>¿No tenes una cuenta todavia?
-                  <Link to={"/register"} className='ms-3'>Registrate</Link></p>
-              </div>
+            <div>
+              <p>¿No tenes una cuenta todavia?
+                <Link to={"/register"} className='ms-3'>Registrate</Link></p>
             </div>
+          </div>
           <div className="d-flex justify-content-center mt-4">
             <button className="boton-iniciar" type="submit">
               Iniciar sesión
             </button>
           </div>
           <p>{cargando}</p>
-        <p>{error}</p>
+          <p>{error}</p>
         </form>
       </div>
     </div>

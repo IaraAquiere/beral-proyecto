@@ -26,7 +26,7 @@ const Orders = () => {
           value={search}
         />
         <div className="tabla-busqueda">
-          <table className="table table-hover">
+          <table className="table  table-striped">
             <thead>
               <tr>
 
@@ -42,14 +42,14 @@ const Orders = () => {
               {result.map((orderItem) => (
                 <tr key={orderItem.id}>
                   <td>{orderItem.orderDateFormat}</td>
-                  <td>{orderItem.id}</td>
+                  <td>{orderItem.orderNo}</td>
                   <td>{orderItem.clientCode}</td>
                   <td>{orderItem.sellerCode}</td>
                   <td>{orderItem.listCode}</td>
                   <td>
                     <button
                       type="button"
-                      className="btn float-end btn-sm btn-widex"
+                      className="btn btn-secondary  float-end"
                       data-bs-toggle="modal"
                       data-bs-target="#myModal"
                       onClick={() => SeeOrder(orderItem.id)}

@@ -5,6 +5,7 @@ import Pedido from "../Pedido";
 import { IProducto } from "../../interfaces/IProducto";
 import Swal from "sweetalert2";
 import "./Cart.css"
+import "../Style/Style.css"
 import Categorias from "../Categorias";
 import { appSetting } from "../../settings/appsettings";
 
@@ -118,7 +119,7 @@ export default function Cart() {
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
                     >
-                        Ver Pedido { items.length > 0 ? "(" +items.length + ")" : ""   }</button>
+                        Finalizar Compra { items.length > 0 ? "(" +items.length + ")" : ""   }</button>
                 </div>
             </div>
             <Categorias />
@@ -161,15 +162,15 @@ export default function Cart() {
             <div className="modal" id="myModal">
                 <div className="modal-dialog modal-dialog-scrollable modal-xl">
                     <div className="modal-content">
-                        <div className="modal-header">
+                        <div className="modal-header borderLeft">
                             <h5 className="modal-title">Su Pedido</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body borderLeft">
                             <Pedido/>
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-danger float-start" data-bs-dismiss="modal" onClick={() => vaciar()}>Limpiar</button>
+                        <div className="modal-footer borderLeft">
+                            <button type="button" className="btn btn-danger float-start" data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
                             <button type="button" className="btn btn-primary" data-bs-dismiss="modal"  onClick={() => GuardarOrden()}>Guardar</button>
                         </div>

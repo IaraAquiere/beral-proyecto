@@ -7,7 +7,7 @@ const Register = () => {
   const { handleChange, SaveUser, newUser } = useRegister();
   return (
     <div className="todo">
-      <div className="wrapper-register rounded-top">
+      <div className="wrapper-register rounded-top borderLeft">
         <div className="row g-3">
           <div className="container div-img">
             <img

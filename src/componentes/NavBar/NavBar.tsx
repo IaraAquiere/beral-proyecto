@@ -39,13 +39,18 @@ const NavBar = () => {
                   <li className="nav-item">
                     <Link className="nav-link" to="/CuentaCorriente">Mi Cta Cte</Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/miscomprobantes">Mis Comprobantes</Link>
+                  </li>
                 </ul>
                 <ul className="navbar-nav nav-underline">
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       {usuario?.email}</a>
                     <ul className="dropdown-menu">
-                      <li><Link className="dropdown-item" to="/logout">Salir   <IoLogOutOutline />
+                    <li><Link className="dropdown-item" to="/cambiarpass">Cambiar contraseña
+                    </Link></li>
+                      <li><Link className="dropdown-item" to="/logout">Salir<IoLogOutOutline />
                       </Link></li>
                     </ul>
                   </li>

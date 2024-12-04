@@ -1,13 +1,16 @@
-
 import { useUsersList } from "../../hook/useUsersList.ts";
 import { IUser } from "../../interfaces/IUser.ts";
 import { appSetting } from "../../settings/appsettings.ts";
 import Search from "../Search/Search.tsx";
+import { userStore } from "../../stores/userStore.tsx";
 
 const UsersList = () => {
- const { users, setUsers, search, userListSearch, resultUserList} = useUsersList();
 
- const Activar = (user : IUser) => {
+const { users, setUsers, search, userListSearch, resultUserList} = useUsersList();
+const token = userStore(state => state.usuario?.token)
+
+
+const Activar = (user : IUser) => {
 
   if(user.isActive)
   {
@@ -17,6 +20,7 @@ const UsersList = () => {
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", "Bearer " + token);
 
 const raw = JSON.stringify({
   "Username": user.email,
@@ -74,7 +78,7 @@ fetch( appSetting.urlApi +  "/api/User/Activar", requestOptions)
           </tr>
         </thead>
         <tbody>
-          {resultUserList.map((user: any) => (
+          {resultUserList.map((user: IUser) => (
             <tr key={user.id}>
               <td>{user.email}</td>
               <td>{user.cuit}</td>

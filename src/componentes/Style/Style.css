@@ -15,5 +15,12 @@
     min-height: 100vh;
     background-color: rgb(215, 215, 215);
   }
+
+  .borderLeft
+  {
+    border-left-color: #eb812a;
+    border-left-width: 0.3rem;
+    border-left-style: solid;
+  }
   
  
