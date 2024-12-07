@@ -3,7 +3,7 @@
   }
 
   .div-img{
-    background-color: #eb812a;
+    background-color: #ff6000;
     margin-bottom: 1rem;
   }
    
@@ -18,9 +18,14 @@
 
   .borderLeft
   {
-    border-left-color: #eb812a;
+    border-left-color: #ff6000;
     border-left-width: 0.3rem;
     border-left-style: solid;
+  }
+
+  .div-footer-color {
+    background-color: #212529;
+    color: white;
   }
   
  

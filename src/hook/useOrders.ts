@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { appSetting } from "../settings/appsettings";
 import { userStore } from "../stores/userStore";
+import { IUserOrder } from "../interfaces/IOrders";
 
 export const useOrders = () => {
-  const [order, setOrder] = useState<any[]>([]);
+  const [order, setOrder] = useState<IUserOrder[]>([]);
   const [search, setSearch] = useState<string>("");
   const token = userStore(state => state.usuario?.token)
   
-  const orderSearch = (e: any) => {
-    setSearch(e.target.value);
+  const orderSearch = (value: string) => {
+    setSearch(value);
   };
 
   const result = search
     ? order.filter((order) => {
       return (
-        (order.orderDateFormat.includes(search)) || 
-        order.id.toString().includes(search) ||
-        order.clientCode.includes(search)
+        order.orderDateFormat.toUpperCase().indexOf(search.toUpperCase()) > -1 || 
+        order.id.toString().toUpperCase().indexOf(search.toUpperCase()) > -1
       );
     })
     : order;
@@ -32,10 +32,13 @@ export const useOrders = () => {
       headers: myHeaders
     };
 
-    
-
     fetch(appSetting.urlApi + "/api/orders", requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+            return response.json()
+          }
+          throw new Error('Bad request!');
+         })
       .then((orderData) => {
         setOrder(orderData);
       })

@@ -11,6 +11,7 @@ import MyAccount from "./componentes/MyAccount/MyAccount"
 import Lists from "./componentes/Lists/Lists"
 import Invoices from "./componentes/Invoices/Invoices"
 import ChangePass from "./componentes/Login/ChangePass"
+import Home from "./componentes/Home/Home"
 
 
 function App() {
@@ -18,7 +19,8 @@ return (
 <BrowserRouter>
 <NavBar/>
 <Routes>
-    <Route path="/" element={<Login/>}/>
+    <Route path="/" element={<Home />}/>
+    <Route path="/login" element={<Login/>}/>
     <Route path="/logout" element={<Logout />} />
     <Route path="/register" element={<Register/>}/>
     <Route element={<ProtectedRoute redirectPath='/'/>}>

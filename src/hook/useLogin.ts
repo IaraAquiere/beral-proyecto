@@ -33,7 +33,7 @@ export const useLogin = (login: number, username : string, password : string) =>
                 .then((response) => response.text())
                 .then((result) => {
                     const login = JSON.parse(result);
-                    console.log(login)
+
                     if (login.token != undefined) {
                         const user : IUser= {
                             id : 0,
@@ -43,10 +43,17 @@ export const useLogin = (login: number, username : string, password : string) =>
                             cuit: login.cuit,
                             phone: login.phonets,
                             isActive: login.active,
-                            isAdmin: login.isAdmin
+                            isAdmin: login.isAdmin,
+                            tgClient : login.tgClient
                         }
                         SetUser(user)
                         localStorage.setItem("berallogin", JSON.stringify(user));
+                        console.log(user.isAdmin)
+                        if(user.isAdmin)
+                        {
+                            navigate("/userlist")
+                            return
+                        }
                         navigate("/orders");
                     } else {
                         setError("usuario y/o comtraseña incorrecto/s");

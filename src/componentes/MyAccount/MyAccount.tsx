@@ -31,10 +31,10 @@ const MyAccount = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container pt-4">
                 <legend>Cuenta Corriente</legend>
                 <hr />
-                <table className="table table-hover">
+                <table className="table table-striped">
                     <thead>
                         <tr>
                             <th>Comprobante</th>

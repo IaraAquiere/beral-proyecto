@@ -1,0 +1,16 @@
+.blackBackground {
+  background-image: url("../../assets/imagenes/blackbackgound.png");
+  background-size: 100%;
+}
+.whileBackground {
+  background-image: url("../../assets/imagenes/whitebackgoudnd.png");
+  background-size: 100%;
+}
+
+.text-Color-Marca
+{
+    color: white
+}
+
+
+

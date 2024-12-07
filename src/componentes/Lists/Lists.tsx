@@ -31,7 +31,7 @@ const Lists = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container pt-4">
                 <legend>Listas de Precios</legend>
                 <hr className="mb-5" />
                 <div className="container d-flex justify-content-center mt-5">

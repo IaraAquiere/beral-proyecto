@@ -4,6 +4,7 @@ import { appSetting } from "../settings/appsettings";
 import { userStore } from "../stores/userStore";
 
 export const useUsersList = () => {
+    const [recarga, setRecarga] = useState<boolean>(false);
     const [users, setUsers] = useState<IUser[]>([]);
     const [search, setSearch] = useState<string>("");
     const token  = userStore(state => state.usuario?.token)
@@ -40,6 +41,6 @@ export const useUsersList = () => {
             .catch((error) => {
                 console.error("Error fetching users:", error);
             });
-    }, []);
-    return { users, setUsers, search, userListSearch, resultUserList }
+    }, [recarga]);
+    return { users, setUsers, search, userListSearch, resultUserList, recarga, setRecarga }
 }

@@ -59,7 +59,7 @@ const Invoices = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container pt-4">
                 <legend>Mis Comprobantes</legend>
                 <hr />
                 <table className="table  table-striped">
@@ -82,7 +82,7 @@ const Invoices = () => {
                             <td>{c.estado}</td>
                             <td>{c.desc_cond}</td>
                             <td className="text-end">{c.importe}</td>
-                            <td className="text-end"><button className="btn btn-primary"  onClick={() => Descargar()}>Descargar</button></td>
+                            <td className="text-end"><button className="btn btn-primary" disabled  onClick={() => Descargar()}>Descargar</button></td>
                             </tr>
                             ))                        
                     }

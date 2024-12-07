@@ -1,4 +1,3 @@
-import Search from "../Search/Search.tsx";
 import useOrders from "../../hook/useOrders.ts";
 import { userStore } from "../../stores/userStore.tsx";
 import { useState } from "react";
@@ -15,16 +14,20 @@ const Orders = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container pt-4">
         <legend>{isAdmin ? "Adm. de Pedidos" : "Mis pedidos"}</legend>
         <hr />
-        <Search
-          className1="d-flex flex-row justify-content-center pb-5 pt-4"
-          className2="form-control form-control-lg border border-dark-subtle w-50"
-          placeholder="Buscar Pedido"
-          onChange={orderSearch}
-          value={search}
-        />
+        <div className="container">
+                <div className="d-flex flex-row justify-content-center m-4">
+                    <input
+                        type="search"
+                        className="form-control border border-dark-subtle w-50"
+                        placeholder={"Buscar..."}
+                        onChange={(e) => orderSearch(e.target.value)}
+                        value={search}
+                    />
+                </div>
+            </div>
         <div className="tabla-busqueda">
           <table className="table  table-striped">
             <thead>
@@ -76,7 +79,7 @@ const Orders = () => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <Order pId={id} />
+              <Order pId={ id } />
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>

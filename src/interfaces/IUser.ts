@@ -11,5 +11,6 @@ export interface IUser {
     country?: string,
     phone: number,
     isActive: boolean,
-    isAdmin: boolean
+    isAdmin: boolean,
+    tgClient?: string
 }

@@ -3,10 +3,13 @@ import { userStore } from "../../stores/userStore";
 import "./Producto.css"
 import { IProducto } from "../../interfaces/IProducto";
 
+type IProps = {
+  producto : IProducto
+}
 
-const Producto = ( {producto} : any) => {
-  const agregarProducto  = userStore(state => state.agregarProducto)
-
+const Producto = ({ producto }: IProps) => {
+  const agregarProducto = userStore(state => state.agregarProducto)
+  const tgClient = userStore(state => state.usuario?.tgClient)
   const [contador, setContador] = useState(0);
 
   const AgregarProducto = (producto: IProducto) => {
@@ -30,31 +33,34 @@ const Producto = ( {producto} : any) => {
   };
 
   return (
-      <>
+    <>
       <td>{producto.productCode}</td>
       <td>{producto.description}</td>
       <td>${producto.price}</td>
-      <td className="boton">
-        <div className="d-flex align-items-center">
-          <button className="boton-mas-menos me-2" onClick={restar}>
-            -
-          </button>
-          <div>{contador}</div>
-          <button className="boton-mas-menos ms-2" onClick={sumar}>
-            +
-          </button>
-        </div>
-      </td>
-      <td className="boton">
-        <div className="d-flex justify-content-center">
-          <button
-            type="button"
-            className="boton-agregar"
-            onClick={() => AgregarProducto(producto)}>
-            Agregar
-          </button>
-        </div>
-      </td>
+      {
+        tgClient == "" ? <></> : <>
+          <td className="boton">
+            <div className="d-flex align-items-center">
+              <button className="boton-mas-menos me-2" onClick={restar}>
+                -
+              </button>
+              <div>{contador}</div>
+              <button className="boton-mas-menos ms-2" onClick={sumar}>
+                +
+              </button>
+            </div>
+          </td>
+          <td className="boton">
+            <div className="d-flex justify-content-center">
+              <button
+                type="button"
+                className="boton-agregar"
+                onClick={() => AgregarProducto(producto)}>
+                Agregar
+              </button>
+            </div>
+          </td>
+        </>}
     </>
   );
 };

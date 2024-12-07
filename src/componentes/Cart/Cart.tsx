@@ -14,7 +14,7 @@ import { appSetting } from "../../settings/appsettings";
 declare let bootstrap: any;
 
 export default function Cart() {
-
+    const tgClient = userStore(state => state.usuario?.tgClient)
     const token = userStore(state => state.usuario?.token)
     const items = userStore(state => state.items)
     const vaciar = userStore(state => state.vaciar)
@@ -34,7 +34,7 @@ export default function Cart() {
                 method: "POST",
                 headers: myHeaders,
             };
-            
+
             fetch(appSetting.urlApi + "/api/articulos/listar/" + idFolder, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
@@ -102,29 +102,27 @@ export default function Cart() {
 
 
     return (
-        <div className="container">
+        <div className="container pt-4">
             <div className="row ">
                 <div className="col ">
                     <legend>Pedido</legend>
-                    <hr />
-                </div>
-            </div>
-            <div className="row ">
-                <div className="col ">
-                    {
-                        //   <legend>Categorias</legend>
-                    }
+                    
                 </div>
                 <div className="col mt-2">
-                    <button
-                        type="button"
-                        className="btn btn-primary float-end"
-                        data-bs-toggle="modal"
-                        data-bs-target="#myModal"
-                    >
-                        Finalizar Compra {items.length > 0 ? "(" + items.length + ")" : ""}</button>
+                    {
+                        tgClient == "" ? <></> :
+                            <button
+                                type="button"
+                                className="btn btn-primary float-end"
+                                data-bs-toggle="modal"
+                                data-bs-target="#myModal"
+                                disabled={items.length < 1}
+                            >
+                                Finalizar Compra {items.length > 0 ? "(" + items.length + ")" : ""}</button>
+                    }
                 </div>
             </div>
+            <hr />
             {
                 //<Categorias />
             }
@@ -149,8 +147,12 @@ export default function Cart() {
                         <th scope="col">Codigo</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col"></th>
+                        {
+                            tgClient == "" ? <></> : <>
+                                                    <th scope="col">Cantidad</th>
+                                                    <th scope="col"></th>
+                                                </>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -175,9 +177,9 @@ export default function Cart() {
                             <Pedido />
                         </div>
                         <div className="modal-footer borderLeft">
-                            <button type="button" className="btn btn-danger float-start" data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
+                            <button type="button" className="btn btn-danger float-start" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => GuardarOrden()}>Guardar</button>
+                            <button type="button" className="btn btn-primary" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => GuardarOrden()}>Guardar</button>
                         </div>
                     </div>
                 </div>

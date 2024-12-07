@@ -4,13 +4,15 @@ import { appSetting } from "../../settings/appsettings";
 import { IProducto } from "../../interfaces/IProducto";
 import { IUserOrder } from "../../interfaces/IOrders";
 
-const Order = (props: any) => {
+type TProp = { pId : number }
+
+const Order = ({pId}: TProp) => {
   const token = userStore(state => state.usuario?.token)
   
   const [data, setData] = useState<IUserOrder>();
 
     useEffect(() => {
-        if(props.pId > 0)
+        if(pId > 0)
             {
         const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -21,12 +23,10 @@ const Order = (props: any) => {
       headers: myHeaders,
     };
     
-    fetch(appSetting.urlApi + "/api/orders/" + props.pId, requestOptions)
+    fetch(appSetting.urlApi + "/api/orders/" + pId, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         setData(JSON.parse(result));
-        console.log(JSON.parse(result))
-        console.log(data != null )
       })
       .catch((error) => {
         console.log(error);
@@ -34,7 +34,7 @@ const Order = (props: any) => {
       });
   }
 }
-    , [props.pId])
+    , [pId])
 
   return (
     <>
@@ -47,19 +47,19 @@ const Order = (props: any) => {
                 <div className="col-12 col-sm-6 col-md-8">
                   <address>
                     <strong>{}</strong><br />
-                    <p>{data.clientCode}-{data.clientName}</p>
-                    <p>{data.sellerCode}-{data.sellerName}</p>
-                    <p>Lista: {data.listCode}</p>
+                    <p><b>Cliente:</b> {data.clientCode}-{data.clientName}</p>
+                    <p><b>Vendedor:</b> {data.sellerCode}</p>
+                    <p><b>Lista: </b> {data.listCode}</p>
                   </address>
                 </div>
                 <div className="col-12 col-sm-6 col-md-4">
                   <h4 className="row">
                     <span className="col-6">Nro #</span>
-                    <span className="col-6 text-sm-end">{data.id}</span>
+                    <span className="col-6 text-sm-end">{data.orderNo}</span>
                   </h4>
                   <div className="row">
-                    <span className="col-6">Fecha</span>
-                    <span className="col-6 text-sm-end">{data.OrderDateFormat}</span>
+                    <span className="col-6"><b>Fecha:</b></span>
+                    <span className="col-6 text-sm-end">{data.orderDateFormat}</span>
                   </div>
                 </div>
               </div>
