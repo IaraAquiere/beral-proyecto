@@ -134,7 +134,7 @@ const UsersList = () => {
 
 
   return (
-    <div className="container">
+    <div className="container pt-4">
       <legend>Usuarios</legend>
       <hr />
       <button className="btn btn-primary float-end" onClick={() => Actualizar()}>Actualizar</button>

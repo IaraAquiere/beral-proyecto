@@ -19,32 +19,34 @@ const Home = () => {
     return (
         <>
                 <div className="row ">
-                    <div className="col  d-flex justify-content-center flex-column blackBackground"><img src={totalMarca} />
-                    <p className="text-Color-Marca px-5">Uno de los principales actores energéticos a nivel mundial que en Argentina produce lubricantes y especialidades a través de sus marcas Total y Elf.</p>
+                    <div className="col  d-flex justify-content-center flex-column blackBackground align-items-center">
+                        <img src={totalMarca} className="marca-sm"  />
+                    <p className="text-Color-Marca px-5 text-center">Uno de los principales actores energéticos a nivel mundial que en Argentina produce lubricantes y especialidades a través de sus marcas Total y Elf.</p>
                     </div>
                     <div className="col d-flex justify-content-center whileBackground"><img src={totalProd} /></div>
                 </div>
-                <div className="row text-center">
-                    <div className="col d-flex justify-content-center whileBackground"><img src={framProd} /></div>
-                    <div className="col  d-flex justify-content-center flex-column blackBackground"><img src={framMarca} />
-                    <p className="text-Color-Marca px-5">Líder en el mercado argentino en la producción de autopartes, con una de las gamas más amplias en productos de filtrado que incluyen: filtros de aceite, aire, diésel, gasolina y habitáculo, siendo la marca preferida por los clientes más exigentes a nivel mundial.</p>
+                <div className="row">
+                    <div className="col d-flex justify-content-center whileBackground align-items-center"><img src={framProd} /></div>
+                    <div className="col  d-flex justify-content-center flex-column blackBackground align-items-center"><img src={framMarca} className="marca-lg"  />
+                    <p className="text-Color-Marca px-5 text-center">Líder en el mercado argentino en la producción de autopartes, con una de las gamas más amplias en productos de filtrado que incluyen: filtros de aceite, aire, diésel, gasolina y habitáculo, siendo la marca preferida por los clientes más exigentes a nivel mundial.</p>
                     </div>
                 </div>
                 <div className="row ">
-                    <div className="col  d-flex justify-content-center flex-column blackBackground"><img src={osramMarca} />
-                    <p className="text-Color-Marca px-5">Con sede en Múnich, es líder mundial en iluminación de alta tecnología con más de 110 años en el mercado.</p>
+                    <div className="col d-flex justify-content-center flex-column blackBackground align-items-center">
+                        <img src={osramMarca} className="marca-lg" />
+                    <p className="text-Color-Marca px-5 text-center">Con sede en Múnich, es líder mundial en iluminación de alta tecnología con más de 110 años en el mercado.</p>
                     </div>
-                    <div className="col d-flex justify-content-center whileBackground"><img src={osramProd} /></div>
+                    <div className="col d-flex justify-content-center whileBackground align-items-center"><img src={osramProd} /></div>
                 </div>
-                <div className="row text-center ">
-                    <div className="col d-flex justify-content-center whileBackground"><img src={tricoProd} /></div>
-                    <div className="col  d-flex justify-content-center blackBackground flex-column"><img src={tricoMarca} />
-                    <p className="text-Color-Marca px-5">Desde 1917 la línea más completa e innovadora de productos de visibilidad del conductor.</p></div>
+                <div className="row  ">
+                    <div className="col d-flex justify-content-center whileBackground align-items-center"><img src={tricoProd} /></div>
+                    <div className="col  d-flex justify-content-center blackBackground flex-column align-items-center"><img src={tricoMarca} className="marca-lg"  />
+                    <p className="text-Color-Marca px-5 text-center">Desde 1917 la línea más completa e innovadora de productos de visibilidad del conductor.</p></div>
                 </div>
                 <div className="row ">
-                    <div className="col  d-flex justify-content-center blackBackground flex-column"><img src={willardMarca} />
-                    <p className="text-Color-Marca px-5">Unionbat a través de su marca Willard, es líder en la fabricación de baterías para alimentar los distintos sistemas eléctricos.</p></div>
-                    <div className="col d-flex justify-content-center whileBackground"><img src={willardProd} /></div>
+                    <div className="col  d-flex justify-content-center blackBackground flex-column align-items-center"><img src={willardMarca} className="marca-lg" />
+                    <p className="text-Color-Marca px-5 text-center">Unionbat a través de su marca Willard, es líder en la fabricación de baterías para alimentar los distintos sistemas eléctricos.</p></div>
+                    <div className="col d-flex justify-content-center whileBackground align-items-center"><img src={willardProd} /></div>
                 </div>
                 <div className="div-footer-color ">
                 <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 container"

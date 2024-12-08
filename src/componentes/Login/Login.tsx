@@ -97,6 +97,7 @@ const Login = () => {
               Iniciar sesión
             </button>
           </div>
+          <p className="text-center mt-2"><Link to={"/"} className='ms-3'>Volver a la web</Link></p>
           <p>{cargando}</p>
           <p>{error}</p>
         </form>

@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import "./Register.css"
 import "../Style/Style.css"
 import useRegister from '../../hook/useRegister';
+import { ThreeDot } from 'react-loading-indicators';
 
 const Register = () => {
-  const { handleChange, SaveUser, newUser } = useRegister();
+  const { handleChange, SaveUser, newUser, error, loading } = useRegister();
   return (
     <div className="todo">
       <div className="wrapper-register rounded-top borderLeft">
@@ -23,7 +24,7 @@ const Register = () => {
                 className="form-control"
                 name='email'
                 value={newUser?.email}
-                onChange={handleChange} />
+                onChange={handleChange} required />
             </div>
             <div className="col-md-4">
               <label className="form-floting">CUIT</label>
@@ -31,7 +32,7 @@ const Register = () => {
                 className="form-control"
                 name='cuit'
                 value={newUser?.cuit}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
             <div className="col-md-8">
               <label className="form-floting">Nombre de Empresa</label>
@@ -39,7 +40,7 @@ const Register = () => {
                 className="form-control"
                 name='companyName'
                 value={newUser?.companyName}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
             <div className="col-md-12">
               <label className="form-floting">Direccion</label>
@@ -47,7 +48,7 @@ const Register = () => {
                 className="form-control"
                 name='address'
                 value={newUser?.address}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
             <div className="col-md-4">
               <label className="form-floting">Localidad</label>
@@ -55,7 +56,7 @@ const Register = () => {
                 className="form-control"
                 name='locality'
                 value={newUser?.locality}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
             <div className="col-md-4">
               <label className="form-floting">Provincia</label>
@@ -63,7 +64,7 @@ const Register = () => {
                 className="form-control"
                 name='state'
                 value={newUser?.state}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
             <div className="col-md-4">
               <label className="form-floting">Pais</label>
@@ -71,7 +72,7 @@ const Register = () => {
                 className="form-control"
                 name='country'
                 value={newUser?.country}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
             <div className="col-md-12">
               <label className="form-floting">Telefono</label>
@@ -79,12 +80,22 @@ const Register = () => {
                 className="form-control"
                 name='phone'
                 value={newUser?.phone}
-                onChange={handleChange} />
+                onChange={handleChange} required/>
             </div>
+            { loading ?
+            <ThreeDot color="#ff6000" size="small" text="" textColor="" />
+            : <></>}
+            {error != null && error != "" ?
+            <div className="col-12">
+              <div>
+                <p style={{color:"red"}}>{error}</p>
+              </div>
+            </div> : <></> }
+
             <div className="col-12">
               <div>
                 <p>¿Ya tenes una cuenta?
-                  <Link to={"/"} className='ms-3'>Inicia Sesion</Link></p>
+                  <Link to={"/login"} className='ms-3'>Inicia Sesion</Link></p>
               </div>
             </div>
             <div>

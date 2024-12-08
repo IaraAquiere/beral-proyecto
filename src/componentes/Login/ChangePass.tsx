@@ -58,8 +58,8 @@ const ChangePass = () => {
 
     return (
         <>
-            <div className="container">
-                <h2>Cambiar Contraseña</h2>
+            <div className="container pt-4">
+                <legend>Cambiar Contraseña</legend>
                 <hr />
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">

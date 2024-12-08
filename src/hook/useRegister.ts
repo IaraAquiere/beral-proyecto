@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 
 
 export const useRegister = () => {
+    const [error,SetError] = useState<string>("")
+    const [loading,SetLoading] = useState<boolean>(false)
     const [newUser, setNewUser] = useState<IUser>({
         id : 0,
         password: "",
@@ -45,11 +47,15 @@ export const useRegister = () => {
         };
     
         try {
+          SetLoading(true)
+          SetError("")
           const response = await fetch(appSetting.urlApi + "/api/User", requestOptions);
     
           if (!response.ok) {
             const errorData = await response.json();
-            console.error("Error en la API:", errorData);
+            //console.error("Error en la API:", errorData);
+            SetError(errorData.msg)
+            SetLoading(false)
             return;
           }
     
@@ -61,14 +67,16 @@ export const useRegister = () => {
             text: "Verifica tu email para poder acceder a la pagina",
             confirmButtonText: "OK",
           });
+          SetLoading(false)
           navigate("/");
     
         } catch (error) {
+          SetLoading(false)
           console.error("Error al registrar el usuario:", error);
         }
       };
     
-  return {handleChange, SaveUser, newUser}
+  return {handleChange, SaveUser, newUser, error, loading}
 };
 
 export default useRegister;

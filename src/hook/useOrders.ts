@@ -16,7 +16,7 @@ export const useOrders = () => {
     ? order.filter((order) => {
       return (
         order.orderDateFormat.toUpperCase().indexOf(search.toUpperCase()) > -1 || 
-        order.id.toString().toUpperCase().indexOf(search.toUpperCase()) > -1
+        order.orderNo.toString().toUpperCase().indexOf(search.toUpperCase()) > -1
       );
     })
     : order;

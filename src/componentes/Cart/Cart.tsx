@@ -68,6 +68,7 @@ export default function Cart() {
             headers: myHeaders,
             body: raw,
         };
+        
         console.log(raw)
         fetch(appSetting.urlApi + "/api/Orders", requestOptions)
             .then((response) => {
@@ -99,7 +100,6 @@ export default function Cart() {
             }
             );
     };
-
 
     return (
         <div className="container pt-4">
