@@ -8,6 +8,7 @@ import "./Cart.css"
 import "../Style/Style.css"
 //import Categorias from "../Categorias";
 import { appSetting } from "../../settings/appsettings";
+import { ThreeDot } from "react-loading-indicators";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,7 +22,8 @@ export default function Cart() {
     const [productos, setProductos] = useState<IProducto[]>([])
     const [filtrados, setFiltrados] = useState<IProducto[]>([]);
     const [buscar, setBuscar] = useState<string>("");
-
+    const [loading, setLoading] = useState<boolean>(false);
+    const [loadingGuardar, setLoadingGuardar] = useState<boolean>(false);
     const idFolder = userStore(state => state.idFolder)
 
     const Actualizar = async () => {
@@ -34,7 +36,7 @@ export default function Cart() {
                 method: "POST",
                 headers: myHeaders,
             };
-
+            setLoading(true)
             fetch(appSetting.urlApi + "/api/articulos/listar/" + idFolder, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
@@ -42,8 +44,12 @@ export default function Cart() {
                     setProductos(data as IProducto[])
                     setFiltrados(data as IProducto[])
                     setBuscar("")
+                    setLoading(false)
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => {
+                    console.error(error)
+                    setLoading(false)
+                });
         };
         showData()
     }
@@ -68,8 +74,8 @@ export default function Cart() {
             headers: myHeaders,
             body: raw,
         };
-        
-        console.log(raw)
+
+        setLoadingGuardar(true)
         fetch(appSetting.urlApi + "/api/Orders", requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -87,6 +93,7 @@ export default function Cart() {
                     timer: 1500
                 });
                 vaciar();
+                setLoadingGuardar(false)
                 bootstrap.Modal.getInstance(document.getElementById('myModal')).hide();
             })
             .catch((error) => {
@@ -97,6 +104,7 @@ export default function Cart() {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setLoadingGuardar(false)
             }
             );
     };
@@ -106,7 +114,7 @@ export default function Cart() {
             <div className="row ">
                 <div className="col ">
                     <legend>Pedido</legend>
-                    
+
                 </div>
                 <div className="col mt-2">
                     {
@@ -138,34 +146,34 @@ export default function Cart() {
                 </div>
             </div>
 
-            <></>
-
             <legend>Articulos ({filtrados.length})</legend>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Precio</th>
-                        {
-                            tgClient == "" ? <></> : <>
-                                                    <th scope="col">Cantidad</th>
-                                                    <th scope="col"></th>
-                                                </>
-                        }
-                    </tr>
-                </thead>
-                <tbody>
+            {loading ? <ThreeDot color="#ff6000" size="small" text="" textColor="" /> :
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Precio</th>
+                            {
+                                tgClient == "" ? <></> : <>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col"></th>
+                                </>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    {
-                        filtrados.map((p: IProducto) => (
-                            <tr key={p.id}>
-                                <Producto producto={p} />
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                        {
+                            filtrados.map((p: IProducto) => (
+                                <tr key={p.id}>
+                                    <Producto producto={p} />
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            }
             <div className="modal" id="myModal">
                 <div className="modal-dialog modal-dialog-scrollable modal-xl">
                     <div className="modal-content">
@@ -173,13 +181,19 @@ export default function Cart() {
                             <h5 className="modal-title">Su Pedido</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body borderLeft">
+                        <div className={"modal-body borderLeft " + (loadingGuardar ? 'disabled-div' : '')}
+                        >
                             <Pedido />
                         </div>
                         <div className="modal-footer borderLeft">
-                            <button type="button" className="btn btn-danger float-start" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                            <button type="button" className="btn btn-primary" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => GuardarOrden()}>Guardar</button>
+                            {loadingGuardar ?
+                                <ThreeDot color="#ff6000" size="small" text="" textColor="" /> :
+                                <>
+                                    <button type="button" className="btn btn-danger float-start" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+                                    <button type="button" className="btn btn-primary" disabled={items.length < 1} onClick={() => GuardarOrden()}>Guardar</button>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>

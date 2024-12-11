@@ -3,8 +3,8 @@ import { IUserStore } from "../interfaces/IUserStore";
 import { IUser } from "../interfaces/IUser";
 
 export const userStore = create<IUserStore>((set, get) => ({
-  id: 1,
-  idFolder: "Rubro",
+  id: 23,
+  idFolder: "ACTIVOS",
   logueado: false,
   usuario: undefined,
   items: [],
