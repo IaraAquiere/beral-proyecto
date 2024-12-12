@@ -11,7 +11,7 @@ const ChangePass = () => {
     const [newPass, setnewPass] = useState("");
     const [newPass2, setnewPass2] = useState("");
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
         cambiar()
         e.preventDefault();
     };
@@ -61,7 +61,7 @@ const ChangePass = () => {
             <div className="container pt-4">
                 <legend>Cambiar Contraseña</legend>
                 <hr />
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="mb-3">
                         <label className="offset-2 form-label">Contraseña actual</label>
                         <div className="offset-2 col-8">

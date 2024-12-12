@@ -1,3 +1,3 @@
 export const appSetting = {
-    "urlApi": "http://localhost:5001"
+    "urlApi": "http://testserver.dynalias.net:8080"
 }

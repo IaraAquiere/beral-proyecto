@@ -5,6 +5,7 @@ import { userStore } from "../../stores/userStore";
 import "./Login.css";
 import "../Style/Style.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { ThreeDot } from "react-loading-indicators";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const Login = () => {
   const { cargando, error } = useLogin(login, username, password);
   const inputPassword = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     setLogin(login + 1);
     e.preventDefault();
   };
@@ -34,9 +35,9 @@ const Login = () => {
 
   useEffect(() => {
 
-    const berallogin: any = window.localStorage.getItem('berallogin')
+    const berallogin: string | null = window.localStorage.getItem('berallogin')
 
-    const user = JSON.parse(berallogin)
+    const user = berallogin == null ? null : JSON.parse(berallogin)
     if (user !== null) {
       setUser(user)
       navigate("/orders")
@@ -53,7 +54,7 @@ const Login = () => {
             className="img-logo"
           />
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Email</label>
             <input
@@ -98,7 +99,7 @@ const Login = () => {
             </button>
           </div>
           <p className="text-center mt-2"><Link to={"/"} className='ms-3'>Volver a la web</Link></p>
-          <p>{cargando}</p>
+          <p>{cargando ?  <ThreeDot color="#ff6000" size="small" text="" textColor="" /> : <></> }</p>
           <p>{error}</p>
         </form>
       </div>
