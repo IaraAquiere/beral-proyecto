@@ -18,9 +18,10 @@ export default function Cart() {
     const tgClient = userStore(state => state.usuario?.tgClient)
     const token = userStore(state => state.usuario?.token)
     const items = userStore(state => state.items)
+    const setItems = userStore(state => state.setItems)
     const vaciar = userStore(state => state.vaciar)
-    const [productos, setProductos] = useState<IProducto[]>([])
-    const [filtrados, setFiltrados] = useState<IProducto[]>([]);
+    //const [productos, setProductos] = useState<IProducto[]>([])
+    const [filtrados, setFiltrados] = useState<IProducto[]>([])
     const [buscar, setBuscar] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [loadingGuardar, setLoadingGuardar] = useState<boolean>(false);
@@ -41,7 +42,7 @@ export default function Cart() {
                 .then((response) => response.text())
                 .then((result) => {
                     const data = JSON.parse(result)
-                    setProductos(data as IProducto[])
+                    setItems(data as IProducto[])
                     setFiltrados(data as IProducto[])
                     setBuscar("")
                     setLoading(false)
@@ -56,11 +57,15 @@ export default function Cart() {
 
     useEffect(() => {
         Actualizar()
-    }, [idFolder]);
+    }, []);
+
+    const vaciarCarrito = () => {
+        vaciar()
+    }
 
     const busquedaProductos = (e: string) => {
         setBuscar(e)
-        setFiltrados(productos.filter(p => p.description.toUpperCase().indexOf(e.toUpperCase()) > -1))
+        //setFiltrados(items.filter(p => p.description.toUpperCase().indexOf(e.toUpperCase()) > -1))
     };
     const GuardarOrden = () => {
         const myHeaders = new Headers();
@@ -126,7 +131,7 @@ export default function Cart() {
                                 data-bs-target="#myModal"
                                 disabled={items.length < 1}
                             >
-                                Finalizar Compra {items.length > 0 ? "(" + items.length + ")" : ""}</button>
+                                Finalizar Compra {items.length > 0 ? "(" + items.filter(p => p.quantity > 0).length + ")" : ""}</button>
                     }
                 </div>
             </div>
@@ -165,7 +170,7 @@ export default function Cart() {
                     <tbody>
 
                         {
-                            filtrados.map((p: IProducto) => (
+                            items.filter(p => p.description.toUpperCase().indexOf(buscar.toUpperCase()) > -1).map((p: IProducto) => (
                                 <tr key={p.id}>
                                     <Producto producto={p} />
                                 </tr>
@@ -189,7 +194,7 @@ export default function Cart() {
                             {loadingGuardar ?
                                 <ThreeDot color="#ff6000" size="small" text="" textColor="" /> :
                                 <>
-                                    <button type="button" className="btn btn-danger float-start" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => vaciar()}>Vaciar carrito</button>
+                                    <button type="button" className="btn btn-danger float-start" disabled={items.length < 1} data-bs-dismiss="modal" onClick={() => vaciarCarrito()}>Vaciar carrito</button>
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
                                     <button type="button" className="btn btn-primary" disabled={items.length < 1} onClick={() => GuardarOrden()}>Guardar</button>
                                 </>

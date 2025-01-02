@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userStore } from "../../stores/userStore";
 import "./Producto.css"
 import { IProducto } from "../../interfaces/IProducto";
+import Swal from "sweetalert2";
 
 type IProps = {
   producto : IProducto
@@ -13,13 +14,16 @@ const Producto = ({ producto }: IProps) => {
   const [contador, setContador] = useState(0);
 
   const AgregarProducto = (producto: IProducto) => {
-    if (contador === 0) {
-      alert("No se puede agregar un producto con cantidad 0");
-      return;
-    }
 
     agregarProducto({ ...producto, quantity: contador });
-    setContador(0);
+
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Articulo agregado!",
+        showConfirmButton: false,
+        timer : 1000
+    });
   };
 
   const sumar = () => {
@@ -32,6 +36,11 @@ const Producto = ({ producto }: IProps) => {
     }
   };
 
+
+  useEffect(() => {
+    setContador(producto.quantity)
+  },[producto])
+
   return (
     <>
       <td>{producto.productCode}</td>
@@ -41,23 +50,26 @@ const Producto = ({ producto }: IProps) => {
         tgClient == "" ? <></> : <>
           <td className="boton">
             <div className="d-flex align-items-center">
-              <button className="boton-mas-menos me-2" onClick={restar}>
+              <button className="btn btn-secondary btn-sm me-2" onClick={restar}>
                 -
               </button>
               <div>{contador}</div>
-              <button className="boton-mas-menos ms-2" onClick={sumar}>
+              <button className="btn btn-secondary btn-sm ms-2" onClick={sumar}>
                 +
+              </button>
+              
+              <button 
+                type="button"
+                className="btn btn-secondary btn-sm ms-2" 
+                disabled={contador == producto.quantity}
+                onClick={() => AgregarProducto(producto)}>
+                 Agregar
               </button>
             </div>
           </td>
           <td className="boton">
-            <div className="d-flex justify-content-center">
-              <button
-                type="button"
-                className="boton-agregar"
-                onClick={() => AgregarProducto(producto)}>
-                Agregar
-              </button>
+            <div className="">
+
             </div>
           </td>
         </>}

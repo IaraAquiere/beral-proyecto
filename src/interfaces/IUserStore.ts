@@ -8,10 +8,12 @@ export interface IUserStore  {
     usuario?: IUser,
     items: IProducto[],
     total: number,
+    sumar: (producto: IProducto) => void,
     agregarProducto: (producto: IProducto) => void,
     borrarProducto: (producto: IProducto) => void,
     setId: (p: string) => void,
     setUser: (p?: IUser | undefined) => void,
+    setItems: (productos : IProducto[]) => void,
     logout: () => void,
     vaciar: () => void
 }

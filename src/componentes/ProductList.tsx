@@ -8,12 +8,12 @@ const ProductList = () => {
     const agregarProducto = userStore(state => state.agregarProducto);
 
     const aumentarCantidad = (producto: IProducto) => {
-        agregarProducto({ ...producto, quantity: +1 }); 
+        agregarProducto({ ...producto, quantity: producto.quantity + 1 }); 
     };
 
     const disminuirCantidad = (producto: IProducto) => {
         if (producto.quantity > 1) {
-            agregarProducto({ ...producto, quantity: -1 }); 
+            agregarProducto({ ...producto, quantity: producto.quantity -1 }); 
         } else {
             borrarProducto(producto); 
         }
@@ -22,7 +22,7 @@ const ProductList = () => {
     return (
         <>
             <tbody className="table-group-divider">
-                {items.map((product : IProducto) => (
+                {items.filter(p => p.quantity > 0).map((product : IProducto) => (
                     <tr key={product.id}>
                         <td>{product.description}</td>
                         <td className="boton">
@@ -42,8 +42,8 @@ const ProductList = () => {
                                 </button>
                             </div>
                         </td>
-                        <td>$ {product.price}</td>
-                        <td>$ {product.quantity * product.price}</td>
+                        <td>$ {product.price.toFixed(2)}</td>
+                        <td>$ {(product.quantity * product.price).toFixed(2)}</td>
                         <td>
                             <div className="d-flex align-items-center ps-2">
                                 <button
