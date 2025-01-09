@@ -22,6 +22,9 @@ const Pedido = () => {
          <div className="d-flex justify-content-end pe-5 pt-4">
           <h5>Total: $ { total.toFixed(2) }</h5>
           </div>
+          <div className="d-flex justify-content-end">
+          <p>(Precios + IVA + Impuestos en total de la Factura)</p>
+          </div>
          
     </>
   );

@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { userStore } from "../../stores/userStore";
 import { IoLogOutOutline } from "react-icons/io5";
+import { IoCartOutline } from "react-icons/io5";
 import "./NavBar.css";
 import beralLogo from "../../assets/imagenes/Beral_logo.png"
 
@@ -29,26 +30,26 @@ const NavBar = () => {
                   </li>
                   {usuario?.isAdmin ? <></> :
                     <li className="nav-item">
-                      <Link className="nav-link" to="/orders">Mis Pedidos</Link>
+                      <Link className="nav-link" to="/orders">MIS PEDIDOS</Link>
                     </li>
                   }
                   <li className="nav-item">
-                    <Link className="nav-link" to="/cart">Carrito</Link>
+                    <Link className="nav-link" to="/cart">CARRITO <IoCartOutline size={25} /></Link>
                   </li>
                   {usuario?.isAdmin ?
                     <li className="nav-item">
-                      <Link className="nav-link" to="/userlist">Lista Usuarios</Link>
+                      <Link className="nav-link" to="/userlist">LISTA USUARIOS</Link>
                     </li> : <>
 
                       <li className="nav-item">
-                        <Link className="nav-link" to="/listas">Listas de Precios</Link>
+                        <Link className="nav-link" to="/listas">LISTA PRECIOS</Link>
                       </li>
 
                       <li className="nav-item">
-                        <Link className="nav-link" to="/CuentaCorriente">Mi Cta Cte</Link>
+                        <Link className="nav-link" to="/CuentaCorriente">MI CTA CTE</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/miscomprobantes">Mis Comprobantes</Link>
+                        <Link className="nav-link" to="/miscomprobantes">MIS COMPROBANTES</Link>
                       </li>
                     </>
                   }
