@@ -60,7 +60,9 @@ const Producto = ({ producto }: IProps) => {
               
               <button 
                 type="button"
-                className="btn btn-secondary btn-sm ms-2" 
+                className="btn btn-sm ms-2"
+                style={{
+                  backgroundColor: contador > 0 ? "green" : "gray", color: "white"}} 
                 disabled={contador == producto.quantity}
                 onClick={() => AgregarProducto(producto)}>
                  Agregar

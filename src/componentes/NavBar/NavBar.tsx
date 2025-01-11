@@ -71,7 +71,7 @@ const NavBar = () => {
                 </ul>
                 <ul className="navbar-nav nav-underline ">
                   <li className="nav-item float-end">
-                    <Link className="nav-link" to="/login">Ingresar</Link>
+                    <Link className="nav-link" to="/login"><h6>INGRESAR</h6></Link>
                   </li>
                 </ul>
               </>}
