@@ -10,6 +10,7 @@ type IProps = {
 
 const Producto = ({ producto }: IProps) => {
   const agregarProducto = userStore(state => state.agregarProducto)
+  const borrarProducto = userStore(state => state.borrarProducto)
   const tgClient = userStore(state => state.usuario?.tgClient)
   const [contador, setContador] = useState(0);
 
@@ -27,13 +28,21 @@ const Producto = ({ producto }: IProps) => {
   };
 
   const sumar = () => {
-    setContador(contador + 1);
+    //setContador(contador + 1);
+    agregarProducto({ ...producto, quantity: producto.quantity + 1 }); 
   };
 
   const restar = () => {
-    if (contador > 0) {
-      setContador(contador - 1);
-    }
+    //if (contador > 0) {
+    //  setContador(contador - 1);
+    //}
+    
+    if (producto.quantity > 1) {
+      agregarProducto({ ...producto, quantity: producto.quantity -1 }); 
+  } else {
+      borrarProducto(producto); 
+  }
+
   };
 
 

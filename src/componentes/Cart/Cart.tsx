@@ -25,24 +25,25 @@ export default function Cart() {
     const [buscar, setBuscar] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [loadingGuardar, setLoadingGuardar] = useState<boolean>(false);
-    const idFolder = userStore(state => state.idFolder)
+    //const idFolder = userStore(state => state.idFolder)
 
     const Actualizar = async () => {
         const showData = async () => {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "Bearer " + token);
+            //myHeaders.append("Authorization", "Bearer " + token);
 
             const requestOptions = {
-                method: "POST",
+                method: "GET",
                 headers: myHeaders,
             };
             setLoading(true)
-            fetch(appSetting.urlApi + "/api/articulos/listar/" + idFolder, requestOptions)
+            fetch("http://localhost/beral-api-php/api.php?request=products", requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
-                    const data = JSON.parse(result)
+                    const data : IProducto[] = JSON.parse(result)
                     setItems(data as IProducto[])
+                    console.log(data)
                     setFiltrados(data as IProducto[])
                     setBuscar("")
                     setLoading(false)
@@ -60,7 +61,7 @@ export default function Cart() {
     }, []);
 
     const vaciarCarrito = () => {
-        vaciar()
+        Actualizar()
     }
 
     const busquedaProductos = (e: string) => {
